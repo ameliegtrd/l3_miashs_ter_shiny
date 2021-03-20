@@ -51,17 +51,19 @@ bnorm <- fluidRow(
         de densité : $$ f_Z(z) =\\frac{1}{\\sqrt{2\\pi}} \\cdot \\exp{(\\frac{-z^2}{2})} , \\forall z \\in \\mathbb{R} $$"
         ),
     box(title = "Représentation graphique de la densité",width = 12,status = "info",solidHeader = T,
-        box(plotOutput("dnorm")),
-        box(title="Contrôle :", 
-            sliderInput(inputId = "bins",
-                        label = "Number of bins:",
-                        min=1, max = 50,value = 30),
-            sliderInput(inputId = "moyenne",label = "Valeur de mu",min=-20,max=20, value = 0),
-            sliderInput(inputId = "ecart_type",label = "Valeur de sigma",min=1,max=50, value = 1)
-        )
-    ),
-
+      box(plotOutput("dnorm")),
+      box(title="Contrôle :",
+          sliderInput(inputId = "ech1", label = "Nombre de d'échantillon",min = 1, max = 1000, value = 400),
+          sliderInput(inputId = "bins",
+                      label = "Number of bins:",
+                      min=1, max = 50,value = 30),
+          sliderInput(inputId = "moyenne",label = "Valeur de mu",min=-20,max=20, value = 0),
+          sliderInput(inputId = "ecart_type",label = "Valeur de sigma",min=1,max=50, value = 1)
+      )
+  )
+  
 )
+
 
 # contenu de la section definition de la loi binomiale
 bbin <- fluidRow(
@@ -75,16 +77,15 @@ bbin <- fluidRow(
         $$ P(X = k) = C^{k}_{n}  \\cdot p^k \\cdot (1-p)^{n-k} $$
         Moments : \\(\\mathbb{E}(X) = np \\)  et  \\(\\mathbb{V}(X) = npq \\) "
     ),
-    box(title = "Représentation graphique de la densité",width = 12,status = "info",solidHeader = T,
-    #    box(plotOutput("dnorm")),
-    #    box(title="Contrôle :",
-    #        sliderInput(inputId = "bins",
-    #                    label = "Number of bins:",
-    #                    min=1, max = 50,value = 30),
-    #        sliderInput(inputId = "moyenne",label = "Valeur de mu",min=-20,max=20, value = 0),
-    #        sliderInput(inputId = "ecart_type",label = "Valeur de sigma",min=1,max=50, value = 1)
-    #    )
-    )
+   box(title = "Représentation graphique de la densité",width = 12,status = "info",solidHeader = T,
+      box(plotOutput("dbinom")),
+      box(title="Contrôle :",
+          sliderInput(inputId = "ech2", label = "Nombre de d'échantillon",min = 1, max = 1000, value = 400),
+          sliderInput(inputId = "nb_tirages",label = "Nombre de tirages",min=0,max=100, value = 10),
+          sliderInput(inputId = "proba",label = "Probabilité de succès",min=0,max=1, value = 0.5, step = 0.01)
+      )
+  
+  )
 )
 
 # contenu de la section definition de la loi exponentielle
@@ -108,14 +109,15 @@ bexp <- fluidRow(
         "
     ),
     box(title = "Représentation graphique de la densité",width = 12,status = "info",solidHeader = T,
-    #    box(plotOutput("dexp")),
-    #    box(title="Contrôle :",
-    #        sliderInput(inputId = "bins2",
-    #                    label = "Number of bins:",
-    #                    min=1, max = 50,value = 30),
-    #        sliderInput(inputId = "lambda2",label = "Valeur de lambda", min = 0.001, max = 20, value = 1,step = 0.001)
-    #    )    
-    )
+         box(plotOutput("dexp")),
+         box(title="Contrôle :",
+             sliderInput(inputId = "ech3", label = "Nombre de d'échantillon",min = 1, max = 1000, value = 400),
+             sliderInput(inputId = "bins2",
+                         label = "Number of bins:",
+                         min=1, max = 50,value = 30),
+             sliderInput(inputId = "lambda2",label = "Valeur de lambda", min = 0.001, max = 20, value = 1,step = 0.001)
+         )    
+  )
 )
 
 # contenu de la section definition de la loi de poisson
@@ -127,11 +129,12 @@ bpoiss <- fluidRow(
         Moments : \\(\\mathbb{E}(X) = \\mathbb{V}(X) = \\lambda\\) "
     ),
     box(title = "Représentation graphique",width = 12,status = "info",solidHeader = T,
-    #    box(plotOutput("dpois")),
-    #    box(title="Contrôle :",
-    #        sliderInput(inputId = "lambda3",label = "Valeur de lambda",min=0.01,max=20, value = 1,step=0.01)
-    #    )
-    )
+      box(plotOutput("dpois")),
+      box(title="Contrôle :",
+        sliderInput(inputId = "ech4", label = "Nombre de d'échantillon",min = 1, max = 1000, value = 400),
+        sliderInput(inputId = "lambda3",label = "Valeur de lambda",min=0.01,max=20, value = 1,step=0.01)
+         )
+  )
 )
 
 # contenu de la section definition de la loi uniforme continue
@@ -155,12 +158,16 @@ bunifc <- fluidRow(
         \\end{equation*}
         Moments : \\(\\mathbb{E}(X) =  \\frac{a + b}{2}\\ \\) et \\(\\mathbb{V}(X) = \\frac{(b-a)^2}{12}\\ \\) "
     ),
-    box(title = "Représentation graphique",width = 12,status = "info",solidHeader = T,
-        #    box(plotOutput("dpois")),
-        #    box(title="Contrôle :",
-        #        sliderInput(inputId = "lambda3",label = "Valeur de lambda",min=0.01,max=20, value = 1,step=0.01)
-        #    )
-    )
+    box(title = "Représentation graphique de la densité",width = 12,status = "info",solidHeader = T,
+      box(plotOutput("dunif")),
+      box(title="Contrôle :",
+          sliderInput(inputId = "ech5", label = "Nombre de d'échantillon",min = 1, max = 1000, value = 400),
+          sliderInput(inputId = "bins3",
+                      label = "Number of bins:",
+                      min=1, max = 50,value = 30),
+          sliderInput(inputId = "range", label = "Borne de l'intervalle",min = -200, max = 200,value = c(-20,20))
+      )    
+  )
 )
 
 # contenu de la section definition de la loi gamma
@@ -177,11 +184,16 @@ bgamma <- fluidRow(
         \\(\\mathbb{E}(X) =  \\frac{p}{\\theta}\\ \\) et \\(\\mathbb{V}(X) = \\frac{p}{\\theta^2}\\ \\) "
     ),
     box(title = "Représentation graphique",width = 12,status = "info",solidHeader = T,
-        #    box(plotOutput("dpois")),
-        #    box(title="Contrôle :",
-        #        sliderInput(inputId = "lambda3",label = "Valeur de lambda",min=0.01,max=20, value = 1,step=0.01)
-        #    )
-    )
+      box(plotOutput("dgamma")),
+      box(title="Contrôle :",
+          sliderInput(inputId = "ech6", label = "Nombre de d'échantillon",min = 1, max = 1000, value = 400),
+          sliderInput(inputId = "bins4",
+                      label = "Number of bins:",
+                      min=1, max = 50,value = 30),
+          sliderInput(inputId = "p",label = "Valeur de p", min = 0.01, max = 15, value = 0.5,step = 0.02),
+          sliderInput(inputId = "teta",label = "Valeur de teta", min = 0.01, max = 15, value = 0.5,step = 0.02)
+      )    
+  )
 )
 
 # contenu de la section definition de la loi du khi-deux
@@ -197,11 +209,15 @@ bkhid <- fluidRow(
         Moments : \\(\\mathbb{E}(X) = n\\) et \\(\\mathbb{V}(X) = 2n \\) "
     ),
     box(title = "Représentation graphique",width = 12,status = "info",solidHeader = T,
-        #    box(plotOutput("dpois")),
-        #    box(title="Contrôle :",
-        #        sliderInput(inputId = "lambda3",label = "Valeur de lambda",min=0.01,max=20, value = 1,step=0.01)
-        #    )
-    )
+         box(plotOutput("dchisq")),
+         box(title="Contrôle :",
+             sliderInput(inputId = "ech7", label = "Nombre de d'échantillon",min = 1, max = 1000, value = 400),
+             sliderInput(inputId = "bins5",
+                         label = "Number of bins:",
+                         min=1, max = 50,value = 30),
+             sliderInput(inputId = "ddl",label = "Nombre de degré de liberté",min=1,max=200, value = 10)
+         )
+  )
 )
 
 # contenu de la section definition de la loi de student
@@ -217,11 +233,15 @@ bstudent <- fluidRow(
         Moments : \\(\\mathbb{E}(T_n) = 0, n>1 \\) et \\(\\mathbb{V}(T_n) = \\frac{n}{n-2}, n>2 \\)  "
     ),
     box(title = "Représentation graphique",width = 12,status = "info",solidHeader = T,
-        #    box(plotOutput("dpois")),
-        #    box(title="Contrôle :",
-        #        sliderInput(inputId = "lambda3",label = "Valeur de lambda",min=0.01,max=20, value = 1,step=0.01)
-        #    )
-    )
+      box(plotOutput("dt")),
+      box(title="Contrôle :",
+          sliderInput(inputId = "ech8", label = "Nombre de d'échantillon",min = 1, max = 1000, value = 400),
+          sliderInput(inputId = "bins6",
+                      label = "Number of bins:",
+                      min=1, max = 50,value = 30),
+          sliderInput(inputId = "ddl2",label = "Nombre de degré de liberté",min=1,max=200, value = 10)
+      )
+  )
 )
 
 # contenu de la section definition de la loi de fisher
@@ -240,11 +260,16 @@ bfisher <- fluidRow(
         \\(\\mathbb{V}(X) = \\frac{2m^{2} \\cdot (n+m-2)}{n(m-4) \\cdot (m-2)^2} ,m>4 \\)"
     ),
     box(title = "Représentation graphique",width = 12,status = "info",solidHeader = T,
-        #    box(plotOutput("dpois")),
-        #    box(title="Contrôle :",
-        #        sliderInput(inputId = "lambda3",label = "Valeur de lambda",min=0.01,max=20, value = 1,step=0.01)
-        #    )
-    )
+      box(plotOutput("df")),
+      box(title="Contrôle :",
+          sliderInput(inputId = "ech9", label = "Nombre de d'échantillon",min = 1, max = 1000, value = 400),
+          sliderInput(inputId = "bins7",
+                      label = "Number of bins:",
+                      min=1, max = 50,value = 30),
+          sliderInput(inputId = "ddl3",label = "Nombre de degré de liberté n",min=1,max=200, value = 10),
+          sliderInput(inputId = "ddl4",label = "Nombre de degré de liberté m",min=1,max=200, value = 10)
+      )
+  )
 )
 
 
