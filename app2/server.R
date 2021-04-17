@@ -50,6 +50,7 @@ function(input, output){
     ech <-rbinom(n=input$ech2,size = input$nb_tirages, prob = input$proba)
     plot(ecdf(ech), main = "Fonction de répartition empirique", cex = 2, col ="red")
   })
+  
   #loi exponentielle
   output$dexp <- renderPlot({
     ech <-rexp(input$ech3,input$lambda2)
