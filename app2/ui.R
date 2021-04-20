@@ -138,7 +138,7 @@ bpoiss <- fluidRow(
          $$ P(X = k) = \\exp{(-\\lambda)}  \\cdot \\frac{\\lambda^k}{k!} $$
         Moments :", br(),  "\\(\\mathbb{E}(X) = \\mathbb{V}(X) = \\lambda\\) "
   ),
-  box(title = "Représentation graphique de la fonction de masse",width = 12,status = "info",solidHeader = T,
+  box(title = "Représentation graphique",width = 12,status = "info",solidHeader = T,
       box(plotOutput("dpois1"),solidHeader = TRUE, height = 400),
       box(title="Contrôle :",solidHeader = TRUE, height = 400,
           sliderInput(inputId = "ech4", label = "Taille de l'échantillon",min = 1, max = 10000, value = 1000),
