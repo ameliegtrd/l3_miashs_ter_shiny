@@ -23,23 +23,77 @@ body <- fluidRow(
 
 # contenu de la section accueil
 baccueil <- fluidRow(
-  tabBox(
-    title = "Présentation",
-    height = "50vh",
-    tabPanel("Site", 
-             "Cette application ressence les différentes lois usuelles. Pour chacune d'entre elles,
-                 il est renseigné sa définition et ses moments d'ordre 1 et 2.", br(),
-             "Egalement, il est possible de voir comment évolue leur densité en fonction
-                 de leur paramètres et du nombre d'observations. Ces informations sont dans la sous-section
-                 intitulé 'Définition'.", br(), "Dans les sous-sections '...' des lois il y a un exemple intéractif
-                 de leurs intervalles de confiance (IC) et leurs risques de premières et deuxièmes espèces."
+    tabBox(
+        title = "Présentation du TER",
+        height = "45vh",
+        tabPanel("Nous", "Cette application, avec l'aide des packages nécessaires, est développée par :", br(),
+                 "- BRIGNON Léa", br(), "- CHU Hoang Viet", br(), "- GOUTARD Amélie", br(), "- GUINARD Florian", br(),
+                 "Elle fait partie du projet de travail de recherche encadré par Laurent Rouvière."
+                 )
     ),
-    tabPanel("Nous", "Cette application, avec l'aide des packages nécessaires, est développée par :", br(),
-             "- BRIGNON Léa", br(), "- CHU Hoang Viet", br(), "- GOUTARD Amélie", br(), "- GUINARD Florian", br(),
-             "Elle fait partie du projet de travail de recherche encadré par Laurent Rouvière."
+    tabBox(
+        title = "Sujet",
+        height = "45vh",
+        tabPanel("Sujet", 
+                 "Cette application est la deuxième de notre projet TER. Elle a été pensée comme \"support\" à la
+                 première application, qui est axée sur le Théorème Central Limite (TCL).
+                 En effet, ce théorème permet d'établir la convergence en loi de la somme d'une suite de 
+                 variables aléatoires vers la loi normale.",br(),
+                 "C'est pour cette raison que cette application porte principalement sur les lois. 
+                 Elle recense les différentes lois usuelles. Pour chacune d'entre elles,
+                 il est renseigné sa définition et ses moments d'ordre 1 et 2.", br(),
+                 "Egalement, il est possible de voir comment elles évoluent graphiquement en fonction
+                 de leur paramètres et du nombre d'observations. Ces informations sont dans la sous-section
+                 intitulée 'Définition'.", br(), "Aussi, dans la première application on explique que le TCL 
+                 permet de trouver un intervalle de confiance. Nous avons donc, pour compléter cette information,
+                 une section sur les Intervalles de Confiance."
+        ),
+        tabPanel("Motivations", "Une loi de probabilité décrit le comportement aléatoire d'un phénomène dépendant
+                 du hasard.",br(), "Plusieurs définitions du hasard sont possibles. Si on s'intéresse à son origine
+                 étymologique, alors le hasard est un mot d'origine arabe qui signifie \"dés \" .",br(),
+                 "Ainsi, les probabilités ont commencé avec les jeux de hasards (les fameux exercices sur les jets de dés)."
+                 ,br(), "Mais aujourd'hui l'utilisation de lois de probabilité n'est pas restreinte aux jeux de hasard.
+                 Elles sont utilisées dans divers domaines du quotidien, comme par exemple pour prédire les votes lors 
+                 du second tour d'une élection présidentielle, ou plus généralement pour prédire les caractéristiques
+                 d'une population inconnue à partir des statistiques déterminées dans un échantillon représentatif de
+                 la popualtion en question.",br(),
+                 "C'est pourquoi, outre le fait que nous utilisons constamment les lois dans notre cursus, nous avons 
+                 trouvé pertinent de s'y intéresser car elles permettent d'illustrer des situations du quotiden."
+        )
+    ),
+    tabBox(
+        title = "Sujet appliqué à Shiny",
+        height = "45vh",
+        tabPanel("Lois", 
+                 "Le principal intérêt avec Shiny est son côté dynamique et interactif.", br(),
+                 "Pour chaque loi, nous avons illustré un échantillon de variables aléatoires suivant la loi en question.
+                 On peut faire varier la taille de l'échantillon, en l'augmentant (pour augmenter sa précision) 
+                 ou en la diminuant (pour baisser la précision).
+                 On peut également modifier les paramètres de la loi en question, ce qui permet de voir son comportement.", br(),
+                 "Pour les lois continues on a représenté avec un histogramme la densité théorique de la loi suivant la valeur
+                 des paramètres choisis.",br(),
+                 "Pour les lois discrètes, nous avons illustré avec deux graphiques ; un représentant la fonction de masse
+                 et l'autre la fonction de répartition empirique."
+        ),
+        tabPanel("Intervalle de Confiance", "Texte"
+        )
+    ),
+    tabBox(
+        title = "Programmation",
+        height = "45vh",
+        tabPanel("Technique", 
+                 "Quels packages on a utilisés et pour faire quoi ?",br(),
+                 "ramchart --> pour graphiques",br(),
+                 "mathjax --> pour ecriture mathematique"
+        ),
+        tabPanel("Difficultés", "Les difficultés qu'on a rencontrées",br(),
+                 "Par exemple l'intéraction entre utilisateur et machine (l'utilsateur rentre une fonction
+                 et la machine l'utilise et ajuste ses calculs ect..)"
+        )
     )
-  )
+    
 )
+
 
 
 # contenu de la section definition de la loi normale
