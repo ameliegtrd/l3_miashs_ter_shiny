@@ -94,6 +94,28 @@ baccueil <- fluidRow(
     
 )
 
+# contenu de la section sources
+bsources <- fluidRow(
+    box(
+        title = "Shiny en 2 minutes", background = "light-blue",
+        HTML('<iframe width="600" height="350" src="https://www.youtube.com/embed/HVa42mJYppE?t=25" 
+             title="Shiny" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+             encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
+    ),
+    box(
+        title = "Shiny Dashboards", background = "light-blue",
+        HTML('<iframe width="600" height="350" src="https://www.youtube.com/embed/41jmGq7ALMY" 
+             title="Shiny" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+             encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
+    ),
+    box(
+        title = "Documentation", background = "black",
+        "RStudio documentation pour Shiny Dashboard : ",
+        a("ici",href="https://rstudio.github.io/shinydashboard/structure.html",target="_blank"), br(),
+        "RStudio documentation pour MathJax :", a("ici",href="https://shiny.rstudio.com/gallery/mathjax.html",target="_blank"),br(),
+        "Moodle documentation pour LaTex : ", a("ici",href="https://docs.moodle.org/3x/fr/Utilisation_de_la_notation_TeX",target="_blank")
+    )
+)
 
 
 # contenu de la section definition de la loi normale
@@ -422,7 +444,7 @@ ui <- dashboardPage(skin = "red",
                                     tabItem(tabName = "def_lfisher",bfisher
                                     ),
                                     # page sources
-                                    tabItem(tabName = "sources",body
+                                    tabItem(tabName = "sources",bsources
                                     )
                                   )
                     )
