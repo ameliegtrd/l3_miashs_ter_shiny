@@ -25,6 +25,11 @@ lignes <- function(x, y, color = "red", line_width = 2){
 }
   
 function(input, output){ 
+ 
+   # exemple de qu'est-ce que shiny dans l'accueil
+  output$ex_input <- renderText({
+    input$ex_input
+    })
   
   #loi normale
   output$dnorm <- renderPlot({
