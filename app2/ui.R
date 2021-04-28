@@ -14,69 +14,54 @@ library(shinydashboard)
 # contenu de la section accueil
 baccueil <- fluidRow(
     box(
-        title = "Présentation du TER", background = "light-blue", height = "50%",
-         "Cette application, avec l'aide des packages nécessaires, est développée par :", br(),
-        "- BRIGNON Léa", br(), "- CHU Hoang Viet", br(), "- GOUTARD Amélie", br(), "- GUINARD Florian", br(),
-        "Elle fait partie du projet de travail de recherche encadré par Laurent Rouvière."
-    ),
-    tabBox(
-        title = "Sujet", 
-        height = "50%",
-        tabPanel("Sujet", 
-                 "Cette application est la deuxième de notre projet TER. Elle a été pensée comme \"support\" à la
-                 première application, qui est axée sur le Théorème Central Limite (TCL).
-                 En effet, ce théorème permet d'établir la convergence en loi de la somme d'une suite de 
-                 variables aléatoires vers la loi normale.",br(),
-                 "C'est pour cette raison que cette application porte principalement sur les lois. 
-                 Elle recense les différentes lois usuelles. Pour chacune d'entre elles,
-                 il est renseigné sa définition et ses moments d'ordre 1 et 2.", br(),
-                 "Egalement, il est possible de voir comment elles évoluent graphiquement en fonction
-                 de leur paramètres et du nombre d'observations. Ces informations sont dans la sous-section
-                 intitulée 'Définition'.", br(), "Aussi, dans la première application on explique que le TCL 
-                 permet de trouver un intervalle de confiance. Nous avons donc, pour compléter cette information,
-                 une section sur les Intervalles de Confiance."
+        title = "Présentation du TER", status = "primary", solidHeader = TRUE, width = 12,
+        collapsible = TRUE,
+        "Nous sommes quatre étudiants en troisième année de licence MIASHS (Mathématiques et 
+        Informatique Appliquées aux Sciences Humaines et Sociales) à l'Université de Rennes 1 et Rennes 2.",br(),br(),
+        box(
+            status="primary",solidHeader = TRUE,align="center",
+            "BRIGNON Léa"
         ),
-        tabPanel("Motivations", "Une loi de probabilité décrit le comportement aléatoire d'un phénomène dépendant
-                 du hasard.",br(), "Plusieurs définitions du hasard sont possibles. Si on s'intéresse à son origine
-                 étymologique, alors le hasard est un mot d'origine arabe qui signifie \"dés \" .",br(),
-                 "Ainsi, les probabilités ont commencé avec les jeux de hasards (les fameux exercices sur les jets de dés)."
-                 ,br(), "Mais aujourd'hui l'utilisation de lois de probabilité n'est pas restreinte aux jeux de hasard.
-                 Elles sont utilisées dans divers domaines du quotidien, comme par exemple pour prédire les votes lors 
-                 du second tour d'une élection présidentielle, ou plus généralement pour prédire les caractéristiques
-                 d'une population inconnue à partir des statistiques déterminées dans un échantillon représentatif de
-                 la popualtion en question.",br(),
-                 "C'est pourquoi, outre le fait que nous utilisons constamment les lois dans notre cursus, nous avons 
-                 trouvé pertinent de s'y intéresser car elles permettent d'illustrer des situations du quotiden."
-        )
-    ),
-    tabBox(
-        title = "Sujet appliqué à Shiny",
-        height = "50%",
-        tabPanel("Lois", 
-                 "Le principal intérêt avec Shiny est son côté dynamique et interactif.", br(),
-                 "Pour chaque loi, nous avons illustré un échantillon de variables aléatoires suivant la loi en question.
-                 On peut faire varier la taille de l'échantillon, en l'augmentant (pour augmenter sa précision) 
-                 ou en la diminuant (pour baisser la précision).
-                 On peut également modifier les paramètres de la loi en question, ce qui permet de voir son comportement.", br(),
-                 "Pour les lois continues on a représenté avec un histogramme la densité théorique de la loi suivant la valeur
-                 des paramètres choisis.",br(),
-                 "Pour les lois discrètes, nous avons illustré avec deux graphiques ; un représentant la fonction de masse
-                 et l'autre la fonction de répartition empirique."
+        box(
+            status="primary",solidHeader = TRUE,align="center",
+            "CHU Hoang Viet"
         ),
-        tabPanel("Intervalle de Confiance", "Texte"
-        )
+        box(
+            status="primary",solidHeader = TRUE,align="center",
+            "GOUTARD Amélie"
+        ),
+        box(
+            status="primary",solidHeader = TRUE,align="center",
+            "GUINARD Florian"
+        ),
+        "Cette application fait partie du projet de travail de recherche encadré par Laurent Rouvière.
+        Il consiste au développement d'une application web avec RShiny afin de présenter un thème statistique."
     ),
     box(
-        title = "Programmation", background = "light-blue", height = "50%",
-        "Quels packages on a utilisés et pour faire quoi ?",br(),
-        "ramchart --> pour graphiques",br(),
-        "mathjax --> pour ecriture mathematique",br(),
-        "Les difficultés qu'on a rencontrées",br(),
-        "Par exemple l'intéraction entre utilisateur et machine (l'utilsateur rentre une fonction
-                 et la machine l'utilise et ajuste ses calculs ect..)"
+        title = "Qu'est-ce que Shiny", status = "warning", solidHeader = TRUE, width = 12,
+        collapsible = TRUE,
+        "Shiny est un package R, développé par RStudio et qui permet de créer des applications web dynamiques et interactives. 
+        Il est ainsi possible de réaliser les mêmes analyses et actions disponibles sous R. Sa principale force est qu'il devient 
+        alors possible de représenter sur le web les données obtenues avec un programme R sans avoir a connaître les languages HTML, CSS et Javascript.", br(),
+        "Une application Shiny a besoin d'une partie 'UI' et d'une partie 'Server' pour fonctionner. La partie UI regroupe les éléments de 
+        mise en forme et d'affichage de l'interface utilisateur. Elle affiche donc des entrées, appellées 'inputs' et des sorties, appelées 'outputs'. 
+        La partie Server execute les codes R qui servent à produire les outputs. C'est cette même partie qui met à jour les valeurs d'inputs 
+        en cas de changement de celle-ci. C'est pour cela que les résultats qui sont fournis sont réactifs.",br(), br(),
+        box(background="yellow", width = 12, solidHeader = TRUE,
+            textInput("ex_input", label = h4("Par exemple"), value = "Ecrivez quelque chose ..."),
+            h4("Vous avez écrit :  ") ,textOutput("ex_input")
+        ),
+        "Vous avez saisi une entrée (input) qui a été envoyé au serveur. Le serveur a produit la sortie (output) et l'a renvoyé à l'UI qui l'a affiché.",br(),
+        "Plus généralement, l'UI prend en entrée des inputs et des valeurs qui sont envoyées au serveur. Celui-ci les créer, les mets à jour,
+        les calculs si nécessaire et les renvoie à l'UI. L'UI peut donc afficher les outputs et les objets."
+    ),
+    box(
+        title = "Sujet appliqué à Shiny", status = "success", solidHeader = TRUE, width = 12,
+        collapsible = TRUE,
+        "Texte"
     )
-    
 )
+
 
 # contenu de la section sources
 bsources <- fluidRow(
