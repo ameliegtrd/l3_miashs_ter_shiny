@@ -14,7 +14,7 @@ shinyServer(function(input, output, session) {
   
   output$Exemple1 <- renderUI({
     withMathJax(
-    "Pour la loi de Bernoulli, on a donc un TCL qui est :
+      "Pour la loi de Bernoulli, on a donc un TCL qui est :
     $$ \\sqrt{n}\\ \\cdot \\frac{\\bar{X_n}-p}{\\sqrt{p(1-p)}} \\stackrel{\\mathcal{L}}{\\rightarrow} \\mathcal{N}(0,1) $$
     ou
     $$ \\sqrt{n}\\ \\cdot (\\bar{X_n}-p) \\stackrel{\\mathcal{L}}{\\rightarrow} \\mathcal{N}(0,p(1-p)) $$
@@ -94,14 +94,16 @@ shinyServer(function(input, output, session) {
     )
   })
   
-  output$dnorm <- renderPlot({
-    moyennes <-rnorm(1000,input$moyenne,((input$ecart_type)^2)/1000)
-    bins <- seq(min(moyennes), max(moyennes), length.out = 101)
-    hist(moyennes,breaks = bins, main = "Histogramme de la moyenne" ,col = "lightblue", border = "black",freq=FALSE)
-    
-    grille.x <- seq(min(moyennes), max(moyennes),length=1000)
-    y<-dnorm(grille.x,input$moyenne,((input$ecart_type)^2)/1000)
-    lines(grille.x,y,col="red",lwd = 2)
+  output$preuve <- renderPlot({
+    échantillon <-rexp(10*input$n, input$lambda)
+    matrice<- matrix(échantillon, nrow=input$n, ncol=10)
+    vecteurmoy<- rowMeans(matrice)
+    vecteur_de_moyenne<-(vecteurmoy-mean(vecteurmoy))/sd(vecteurmoy)
+    hist(vecteur_de_moyenne,breaks = 45, main = "Histogramme de la preuve empirique" ,col = "lightblue", border = "black",freq=FALSE)
+
+    grille.x <- seq(-max(échantillon), max(échantillon), length.out = 1000)
+    y<-dnorm(grille.x,0,1)
+    lines(grille.x, y, col="red",  lwd=2)
   })
   
   # pour delta methode affiche ce que l'utilisateur a ecrit
@@ -112,7 +114,25 @@ shinyServer(function(input, output, session) {
   output$selection <- renderUI({
     withMathJax(
       "\\( \\sqrt{n}\\ \\cdot (\\bar{X_n}-p) \\stackrel{\\mathcal{L}}{\\rightarrow} \\mathcal{N} \\left(0,p(1-p) \\right) \\)"
-      )
+    )
+  })
+  
+  output$ex_input <- renderText({
+    input$ex_input
+  })
+  
+  output$IC <- renderPlot({
+    q1<- qbinom(input$risque/2,input$nb, 0.5)
+    x<-(0.5*(1-0.5))/input$nb
+    
+    deb<-0.5-(q1*sqrt(x))
+    fin<- 0.5+(q1*sqrt(x))
+    
+    plot(x=rep(2,1000), type="l")
+    
+    segments(deb,2, fin,2, col="red")
+ 
+    
   })
   
 })
