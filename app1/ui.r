@@ -33,55 +33,75 @@ delta<-function(fct){
 
 # contenu de la section accueil
 baccueil <- fluidRow(
-    box(title = "Présentation TER", background = "light-blue", height = "50%",
-        "Cette application, avec l'aide des packages nécessaires, est développée par :", br(),
-        " - BRIGNON Léa", br(), "- CHU Hoang Viet", br(), "- GOUTARD Amélie" , br(),"- GUINARD Florian.", br(),
-        "Elle fait partie du projet de travail de recherche encadré par Laurent Rouvière."
+    box(
+        title = "Présentation du TER", status = "primary", solidHeader = TRUE, width = 12,
+        collapsible = TRUE,
+        "Nous sommes quatre étudiants en troisième année de licence MIASHS (Mathématiques et 
+        Informatique Appliquées aux Sciences Humaines et Sociales) à l'Université de Rennes 1 et Rennes 2.",br(),br(),
+        box(
+            status="primary",solidHeader = TRUE,align="center",
+            "BRIGNON Léa"
         ),
-    tabBox(
-        title = "Sujet",
-        tabPanel("Sujet",
-                 "Cette application est l'application principale de notre projet TER. Elle est axée sur le Théorème Central Limite (TCL).",br(),
-                 "Il permet de savoir vers quelle loi normale une somme tend en loi selon la loi que suivent les \\(X_i\\) de la moyenne.", br(),
-                 "Ce théorème permet plusieurs choses, notamment de trouver un intervalle de confiance (IC) ou encore d'approximer une intégrale.
-                 Cette application est plus 'théorique' que la seconde application portant sur les lois usuelles et qui est là comme support. 
-                 Dans la section 'Définition du TCL' vous trouverez le TCL d'un point de vue assez global avec une définition et une preuve.
-                 Dans la section 'Application aux lois' nous appliquons le TCL aux différentes lois usuelles de façon à voir clairement les TCL pour chaque loi.
-                 Dans la section 'Intervalle de confiance' nous expliquons comment le TCL sert pour les IC et approximations d'intégrales.",br(),
-                 "Pour plus de précisions sur les lois, vous pouvez aller voir la deuxième application."
-                 ),
-        tabPanel("Motivations", 
-                 "La première démonstration du Théorème Central Limite, publiée en 1809, est due à Pierre-Simon de Laplace. 
-                 Ce théorème est un modèle fondamental car sans lui, il serait par exemple compliqué de trouver un intervalle de confiance.",br(),
-                 "En effet, l'intervalle de confiance est très utile car il permet, par exemple, de mesurer l'incertitude pendant une enquête ou 
-                 étude de marché à partir d'un échantillon représentatif.",br(),
-                 "Le TCL est ainsi très utile car il nous aide pour estimer la valeur de la moyenne inconnue d'une population à partir d'observation d'un échantillon.",br(),
-                 "C'est pourquoi, outre le fait que nous avons pu retrouver ce théorème tout au long de notre cursus, nous avons choisi ce sujet."
-                 )
-    ),
-    tabBox(
-        title = "Shiny",
-        tabPanel("Qu'est ce que Shiny",
-                 "Shiny est un package développé par les équipes de RStudio et qui permet de créer des applications dynamiques pour le web. 
-                 Une application Shiny est séparée en deux éléments : une partie 'UI' et une autre 'Server'. Pour mieux comprendre à quoi servent
-                 ces parties, vous pouvez aller voir la première vidéo de la section 'Source' de cette application.",br(),
-                 "Il est ainsi possible avec Shiny de réaliser toutes les analyses et actions qui sont disponibles sous R et de les afficher dans une
-                 application sur le web ... sans avoir besoin de connaître les languages HTML, CSS et Javascript.",br(), ""
+        box(
+            status="primary",solidHeader = TRUE,align="center",
+            "CHU Hoang Viet"
         ),
-        tabPanel("TCL avec Shiny", 
-            "Dans la section 'Application aux lois' nous avons créer des boxes à choix multiples ce qui rend le rendu des TCL à chaque lois usuelles
-            plus interactif en laissant le choix de la fonction à l'internaute. Egalement, et toujours dans cette section, y figure un histogramme 
-            permettant de voir vers quoi converge chaque fonction en faisant varier les paramètres \\( \\mu \\) et \\( \\sigma \\). ", br(),
-            "A COMPLETER : SECTION INTERVALLE DE CONFIANCE, GRAPHIQUE"
-        )
+        box(
+            status="primary",solidHeader = TRUE,align="center",
+            "GOUTARD Amélie"
+        ),
+        box(
+            status="primary",solidHeader = TRUE,align="center",
+            "GUINARD Florian"
+        ),
+        "Cette application fait partie du projet de travail de recherche encadré par Laurent Rouvière.
+        Il consiste au développement d'une application web avec RShiny afin de présenter un thème statistique."
     ),
-    box(title = "Explications et difficultés", background = "light-blue", height = "50%",
-        "Nous avons rencontré quelques difficultés lors de la conception de cette application et il paraît intéressant de les lister. 
-        Cette application, de nature plus 'théorique' que la seconde nous a posé des problèmes quant à son manque de dynamisme et d'interactivité
-        avec l'utilisateur.", br(),
-        "En effet, nous trouvions que parler du TCL pouvait être très intéressant sachant que la seconde application pouvait apporter des informations 
-        plus précise sur chaque loi citée. Cependant, le TCl n'est pas un outil qui s'illustre facilement de façon dynamique.", br(),
-        "Nous avons par exemple rencontré des difficultés avec la delta méthode. EXPLIQUER LES DIFFICULTES LORSQU'ON AURA FINI CETTE METHODE"
+    box(
+        title = "Qu'est-ce que Shiny", status = "warning", solidHeader = TRUE, width = 12,
+        collapsible = TRUE,
+        "Shiny est un package R, développé par RStudio et qui permet de créer des applications web dynamiques et interactives. 
+        Il est ainsi possible de réaliser les mêmes analyses et actions disponibles sous R. Sa principale force est qu'il devient 
+        alors possible de représenter sur le web les données obtenues avec un programme R sans avoir a connaître les languages HTML, CSS et Javascript.", br(),
+        "Une application Shiny a besoin d'une partie 'UI' et d'une partie 'Server' pour fonctionner. La partie UI regroupe les éléments de 
+        mise en forme et d'affichage de l'interface utilisateur. Elle affiche donc des entrées, appellées 'inputs' et des sorties, appelées 'outputs'. 
+        La partie Server execute les codes R qui servent à produire les outputs. C'est cette même partie qui met à jour les valeurs d'inputs 
+        en cas de changement de celle-ci. C'est pour cela que les résultats qui sont fournis sont réactifs.",br(), br(),
+        box(background="yellow", width = 12, solidHeader = TRUE,
+            textInput("ex_input", label = h4("Par exemple"), value = "Ecrivez quelque chose ..."),
+            h4("Vous avez écrit :  ") ,textOutput("ex_input")
+        ),
+        "Vous avez saisi une entrée (input) qui a été envoyé au serveur. Le serveur a produit la sortie (output) et l'a renvoyé à l'UI qui l'a affiché.",br(),
+        "Plus généralement, l'UI prend en entrée des inputs et des valeurs qui sont envoyées au serveur. Celui-ci les créer, les mets à jour,
+        les calculs si nécessaire et les renvoie à l'UI. L'UI peut donc afficher les outputs et les objets."
+    ),
+    box(
+        title = "Sujet appliqué à Shiny", status = "success", solidHeader = TRUE, width = 12,
+        collapsible = TRUE,
+        "Cette application est l'application principale de notre projet TER. Cette application est axée sur le Théorème Centrale Limite (TCL). Il parait donc intéressant 
+        de définir ce qu’est ce théorème et à quoi il sert. Le TCL permet  de savoir vers quelle loi normale tend un vecteur de moyennes en fonction de la loi que suivent ses \\(X_i\\) 
+        Il sert notamment à trouver un intervalle de confiance (IC) ou encore à approximer une intégrale. En outre, la première démonstration du Théorème Central Limite, publiée en 1809, 
+        est due à Pierre-Simon de Laplace.",br() , br(),
+        "Le TCL est ainsi très utile car il nous aide pour estimer la valeur de la moyenne inconnue d'une population à partir d'observation 
+        d'un échantillon. C'est pourquoi, outre le fait que nous avons pu retrouver ce théorème tout au long de notre cursus, nous avons choisi ce sujet.",br() , br(),
+        "Dans la vie courante le TCL peut être utile. Par exemple, si on relève un grand échantillon de salaires dans une entreprise, la représentation 
+        graphique ne correspondrait pas à une loi gaussienne car la fonction de densité serait étirée vers la droite. Il est donc intéressant de représenter 
+        les salaires moyens qui donneront une représentation d’une loi vraisemblablement gaussienne. ",br() , br(),
+        "Nous allons maintenant d’écrire le contenu de l’application. Dans la section 'Définition du TCL' vous trouverez le TCL d'un point de vue assez 
+        global avec une définition, un contre-exemple et une preuve. Dans la section 'Application aux lois', nous appliquons le TCL aux différentes lois 
+        usuelles de façon à voir clairement les TCL pour chaque loi. Nous avons également décidé de mettre une preuve empirique du TCL pour la loi de Bernoulli 
+        dans le but de prouver à l’aide d’une représentation graphique qu’un vecteur contenant les moyennes de \\(X_i\\) suivant une loi de Bernoulli tend vers une loi normale. 
+        Il nous a ensuite paru intéressant de faire quelques rendu de TCL à l’aide de la delta méthode qui est très liée avec le TCL. En effet, cela permet de savoir vers quelle 
+        loi normale tend une fonction appliquée à \\(\\bar{X_n}\\) ",br() , br(),
+        "Enfin, nous avons pris le parti de développer l’Intervalle de Confiance et son lien avec le TCL. En effet, le TCL est un outil très utile pour trouver des intervalles 
+        de confiances (développer).En effet, il permet quelque soit les lois de se ramener à des règles gaussiennes et de trouver des intervalles de confiance asymptotique de façon plus simple.
+        Dans le quotidien, les intervalles de confiances sont très utiles et servent pas exemple à mesurer l’incertitude dans des enquêtes ou des études de marché à partir d’échantillons. (rajouter difficultées)"
+        ,br() , br(),
+        "Enfin, nous avons rencontrer quelques difficultés lors de la conception de cette application. Dans un premier temps, il a fallu nous abituer à travailler avec Shiny, un package que nous n'avions
+        encore jamais utilisé. Dans un second temps, il a fallu réfléchir à une façon de rendre notre application intéractive. En effet, Le TCL n'est pas le sujet le plus simple à illustrer si l'on veut rendre cela intéractif. 
+        Il a par exemple fallu construire la première page qui n'est que théorique mais indispensable pour la suite. Nous avons ensuite pû faire une preuve empirique du TCL de façon intéractive. Il n'était pas facile de toruver 
+        comment démontrer cela mais nous nous sommes basée sur une seule loi et le résultat final était intéractif comme nous le voulions. Il y a également une partie sur la delta méthode qui permet de montrer ce que peut donner le TCL
+        en fonction de différentes fonctions appliquées à XNbarre. PARLER IC"
     )
 )
 
@@ -113,15 +133,18 @@ bsources <- fluidRow(
 
 body_deftcl <- fluidRow(
     box(title = "Définition du TCL",status="warning",solidHeader = T,width=6,
-            "Le TCL (Théorème Central Limite) est le suivant :", br(),
-            "Soit \\( (X_n)_{n \\in N}\\) une suite de variables aléatoires indépendantes de même loi, et telles que 
+        "Le TCL (Théorème Central Limite) est le suivant :", br(),
+        "Soit \\( (X_n)_{n \\in N}\\) une suite de variables aléatoires indépendantes de même loi, et telles que 
             \\( \\mathbb{E} \\left(X_{i}^{2} \\right) < +\\infty \\).",br(), 
-            "On note \\( \\mathbb{E}(X_i) = \\mu, \\mathbb{V}(X_i) = \\sigma^2 \\) et \\( \\bar{X_n} = \\sum_{i=1}^{n} x_i \\).", br(), 
-            "On a alors , quand \\( n \\rightarrow \\infty \\) : 
+        "On note \\( \\mathbb{E}(X_i) = \\mu, \\mathbb{V}(X_i) = \\sigma^2 \\) et \\( \\bar{X_n} = \\frac{1}{n} \\sum_{i=1}^{n} X_i \\).", br(), 
+        "On a alors , quand \\( n \\rightarrow \\infty \\) : 
             $$ \\sqrt{n} \\cdot \\frac{\\bar{X_n} - \\mu} \\sigma \\stackrel{\\mathcal{L}}{\\rightarrow} \\mathcal{N}(0,1) $$"
-        ),
+    ),
+    
+    box(title ="Eléments de preuve",status="info",solidHeader = T,width=6, "contre exemple"),
+    
     box(title ="Eléments de preuve",status="danger",solidHeader = T,width=12,
-            "- On note \\( \\varphi \\) la fonction caractéristique des variables aléatoires \\( {X_n} - \\mu \\) et 
+        "- On note \\( \\varphi \\) la fonction caractéristique des variables aléatoires \\( {X_n} - \\mu \\) et 
             $$Y_{n}=\\sqrt{n} \\cdot \\frac{\\bar{X_n}-\\mu}{\\sigma}$$
             - On obtient des propriétés de la fonction caractéristique :
             $$ \\varphi_{Y_{n}}(t) = \\left(\\varphi \\cdot \\left(\\frac{t}{\\sigma\\sqrt{n}} \\right) \\right)^{n} $$
@@ -137,7 +160,7 @@ body_deftcl <- fluidRow(
             $$ t\\mapsto \\exp \\left(-\\frac{t^{2}}{2} \\right) \\quad \\textrm{est la fonction caracteristique de la loi} \\quad \\mathcal{N}(0,1) $$ 
             - Dapres le theoreme de Paul Levy, on conclut :
             $$ Y_{n} \\stackrel{\\mathcal{L}}{\\rightarrow} \\mathcal{N}(0,1) $$"
-        )
+    )
 )
 
 # contenu de la section application aux lois
@@ -155,24 +178,28 @@ body_application_loi<-fluidRow(
             Applicationloi("checkbox8","La loi Fisher","input.checkbox8 == true","Exemple8")
         )
     ),
-    box(title = "Preuve empirique",width = 12,status = "info",solidHeader = T,
-        box(plotOutput("dnorm"),solidHeader = T
-            ),
-        box(title="Contrôle :", solidHeader = T,
-            sliderInput(inputId = "moyenne",label = "Valeur de \\( \\mu \\) ",min=-20,max=20, value = 0),
-            sliderInput(inputId = "ecart_type",label = "Valeur de \\( \\sigma \\) ",min=1,max=50, value = 1)
-            ),
-        box(title="Explication :",solidHeader = T,
-            "Voici la représentation graphique de \\(X_n\\). Nous avons décider de ne pas laisser choisir le nombre d'observations \\(n\\) car pour 
-            que le TCL soit correct il faut que le nombre d'observations \\(n\\) soit grand. Cela se répércute donc sur la représentation graphique 
-            puisqu'il faut que \\(n\\) soit grand pour que \\(X_n\\) converge en loi vers une loi normale."
-            )
+    box(title = "Preuve empirique avec la loi exponentielle",width = 12,status = "info",solidHeader = T,
+        box(plotOutput("preuve"),solidHeader = T
         ),
+        box(title="Contrôle :", solidHeader = T,
+            sliderInput(inputId = "lambda",label = "Valeur de \\( \\lambda \\) ",min=0.1,max=20, value = 0),
+            sliderInput(inputId = "n",label = "nombre d'obervations dans chaque échantillon ",min=100,max=100000, value = 1)
+        ),
+        box(title="Explication :",solidHeader = T,
+            "Nous avons pris le parti de montrer graphiquement la preuve empirique à l'aide de la loi exponentielle.
+            Nous avons donc construit une matrice composée de différents échantillons aléatoire de la loi exponentielle puis nous avons créer
+            un vecteur composé des moyennes de chaque ligne de la matrice (donc de différents échantillons). Nous aons également choisi de laisser l'utilisteur choisir
+            le lambda et le nombre d'observations qu'il y a dans chaque échantillon (n). Comme cela, nous pouvons directement voir que la preuve empirique ne marche que quand n est grand.
+            En effet, il faut avoir un grand nombre d'échantillons pour que les moyennes suivent une loi normale. 
+            En effe, si nous faisosn la moyenne de seulement une variable par exemple, la moyenne ne sera pas significative et vaudra la valeur de départ qui elle ne suit pas une loi normale.
+            SUFFISANT ? "
+        )
+    ),
     box(title = "Delta méthode",status="warning",solidHeader = T,width=12,
         box(solidHeader = T,textInput(inputId = "idText", label = "Entrez une fonction appliquée à \\(\\bar{X}\\)", value = "")
         ),
         box(solidHeader = T,selectInput(inputId = "idSelect", label = "Les variables de \\(\\bar{X}\\) suivent une loi: ", selected = 1,
-                        choices = c("1" = 1, "2" = 2, "3" = 3))
+                                        choices = c("1" = 1, "2" = 2, "3" = 3))
         ),
         # pour delta methode recupere dans "selected_var" ce que l'utilisateur a ecrit
         mainPanel(
@@ -185,10 +212,16 @@ body_application_loi<-fluidRow(
 
 # contenu de la section Interval de Confiance
 body_application_IC <- fluidRow(
-    box(title = "A quoi peut sevir le TCL",width = 12,status = "info",solidHeader = T),
-    box(title = "Pour les intervalles de confiance",width = 6,status = "warning",solidHeader = T),
-    box(title = "Pour les approximations d'intégrales",width = 6,status = "warning",solidHeader = T)
-)
+    box(title = "Le lien entre le TCL et les Intervalles de Confiances",width = 12,status = "info",solidHeader = T),
+    box(title = "Pour les intervalles de confiance",width = 12,status = "warning",solidHeader = T),
+    box(title = "Représentation graphique de l'évolution du TCL",width = 12,status = "info",solidHeader = T,
+        box(plotOutput("IC"),solidHeader = T
+        ),
+        box(title="Contrôle :", solidHeader = T,
+            sliderInput(inputId = "risque",label ="Le rique : 1-\\( \\alpha \\) ",min=0.1,max=0.99, value = 0),
+            sliderInput(inputId = "nb",label = "nombre d'obervations",min=1,max=1000, value = 1)
+        )
+))
 
 
 
