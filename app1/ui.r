@@ -138,6 +138,7 @@ bsources <- fluidRow(
 )
 
 
+# contenu de la section definition du tcl
 body_def_tcl <- fluidRow(
     box(
         title = "Définition du TCL",status="warning",solidHeader = T,width=6, align="justify",
