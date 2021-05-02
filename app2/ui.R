@@ -38,7 +38,7 @@ baccueil <- fluidRow(
         Il consiste au développement d'une application web avec RShiny afin de présenter un thème statistique."
     ),
     box(
-        title = "Qu'est-ce que Shiny", status = "warning", solidHeader = TRUE, width = 12,
+        title = "Qu'est-ce que Shiny", status = "warning", solidHeader = TRUE, width = 12,align="justify",
         collapsible = TRUE,
         "Shiny est un package R, développé par RStudio et qui permet de créer des applications web dynamiques et interactives. 
         Il est ainsi possible de réaliser les mêmes analyses et actions disponibles sous R. Sa principale force est qu'il devient 
@@ -56,13 +56,50 @@ baccueil <- fluidRow(
         les calculs si nécessaire et les renvoie à l'UI. L'UI peut donc afficher les outputs et les objets."
     ),
     box(
-        title = "Sujet appliqué à Shiny", status = "success", solidHeader = TRUE, width = 12,
+        title = "Sujet appliqué à Shiny", status = "success", solidHeader = TRUE, width = 12, align="justify",
         collapsible = TRUE,
-        "Texte"
+        "Cette application porte sur les Lois Usuelles. 
+        Les lois de probabilités décrivent le comportement aléatoire d'un phénomène dépendant du hasard.",br(),
+        "On considère une variable aléatoire \\(X\\) comme un objet mesurant le résultat d'une expérience aléatoire.
+        Ces variables peuvent être discrètes ou continues.",br(),br(),
+        box(
+            status="success",solidHeader = TRUE,width=6, height=150,
+            "Une variable aléatoire réelle \\(X\\) a valeurs dans un ensemble \\( \\mathcal{X}\\) fini ou dénombrable est appelée variable aléatoire
+            réelle discrète. Dans ce cas, la loi de \\(X\\) est déterminée par l'ensemble des probabilités :
+            $$ \\mathbb{P}_X(x) = \\mathbb{P}(X = x), \\quad x \\in \\mathcal{X} $$"
+        ),
+        box(
+            status="success",solidHeader = TRUE,width=6,height=150,
+            "Soit \\(X\\) une variable aléatoire réelle qui prend un nombre infini non dénombrable de valeurs. 
+            Si \\(F_X\\) est une fonction continue, on dit que \\(X\\) est une variable aléatoire réelle continue. 
+            Dans ce cas, la loi de \\(X\\) est déterminée par l'ensemble des probabilités :
+            $$ \\mathbb{P}(a < X < b), \\quad \\forall \\, a<b $$"
+        ),
+        "Ainsi, en statistique, on essaie de déterminier de manière plus ou moins précise la loi \\(F\\) de \\(X\\).
+        Pour y parvenir, on réalise un nombre de répétitions indépendantes de l'expérience conduisant à \\(X\\). 
+        On génère ainsi un échantillon de valeurs issues de la loi de \\(F\\).",br(),
+        "De cette façon, les lois de probabilité permettent d'illustrer des situations du quotidien.
+        Par exemple, elles sont utilisées pour prédire les caractéristiques d'une population inconnue à partir des 
+        statistiques déterminées dans un échantillon représentatif de la popualtion en question.",br(),br(),
+        box(title = "Par exemple", width = 12, solidHeader = T, collapsible = T, collapsed = T, background = "green",
+            "Prenons l'exemple des élections présidentielles en France. Suite au premier tour, deux candidats s'affrontent lors du second tour. 
+            Un sondage auprès d'environ 1000 électeurs est réalisé. Ce sondage génère un échantillon du vote de 1000 électeurs, 
+            sur une population de plusieurs millions.L'objectif est de prédire à partir de cet échantillon, quel candidat va remporter le plus de sufrages.
+            Pour ce faire, on détermine la loi que suivent les variables aléatoires. On pourrai approximer par la loi binomiale et se reporter grâce 
+            au Théorème Central Limite à une loi gaussienne."
+            ),
+        "Cette application recense les différentes lois usuelles. Pour chacune d'entre elles, il est rensigné sa définition et ses moments d'ordre 1 et 2.
+        Pour chaque loi, nous avons représenté un échantillon de variables aléatoires suivant la loi en question.",br(),
+        "Pour les lois discrètes (binomiale et poisson),",br(),
+        "Pour les lois continues (les autres), ",br(),
+        "Pour toutes ces lois, l'intérêt des représentations graphiques est le panneau 'Contrôle'.
+        Il permet de faire varier la taille de l'échantillon et les paramètres de la loi en question.
+        L'objectif est d'observer le comportement de la loi en fonction de ses paramètres.",br(),
+        "Vous pourrez remarquer que plus la taille de l'échantillon est grande, plus vous gagner en précision et plus la densité 
+        ressemble une densité gaussienne. Ce phénomène est expliqué dans la seconde application axée sur le Théorème Central Limite, 
+        que vous pouvez aller voir à partir du menu de naviguation."
     )
 )
-
-
 # contenu de la section sources
 bsources <- fluidRow(
     box(
@@ -383,7 +420,7 @@ ui <- dashboardPage(skin = "red",
             )
         ),
     # contenu de la page
-    dashboardBody(tags$link(rel = "stylesheet", type = "text/css", href = "style1.css"),withMathJax(),
+    dashboardBody(withMathJax(), includeCSS("www/style1.css"),
         tabItems(
         # page accueil
             tabItem(tabName = "accueil",baccueil
