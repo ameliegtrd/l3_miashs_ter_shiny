@@ -60,7 +60,7 @@ function(input, output){
   
   output$dbinom3 <-renderPlot({
     ech <-rbinom(n=input$ech2,size = input$nb_tirages, prob = input$proba)
-    grille.x = seq(min(ech), max(ech),length=500)
+    grille.x = seq(min(ech), max(ech),length=input$ech2)
     y = pbinom(grille.x,input$nb_tirages,input$proba)
     df <- cbind(data.frame(ech),data.frame(grille.x),data.frame(y))
     ggplot(df, aes(ech)) + stat_ecdf(col="blue") + geom_line(aes(x=grille.x,y=y),col="red") +
