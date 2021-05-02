@@ -1,11 +1,13 @@
 # install.packages("anyLib")
 # anyLib::anyLib(c("shiny", "shinydashboard", "shinyWidgets", "DT", "plotly", "ggplot2", "googleVis", "colourpicker"))
 
+# library
 library(shiny)
 library(shinydashboard)
 
 
-## fonctions
+# fonctions
+# box application aux lois
 Applicationloi<- function(x, y, z, k){
     fluidRow(
         checkboxInput(x, y, value = FALSE),
@@ -20,22 +22,27 @@ Applicationloi<- function(x, y, z, k){
     )
 }
 
-delta<-function(fct){
-    print(fct)
-    xn<-sub("x", "xn", fct)
-    mu<- sub("x", "lambda", fct)
-    
-    a<-paste(xn,mu,sep=" - ")
-    a
+# box delta methode
+Deltamethode<- function(z, k){
+    fluidRow(
+        column(
+            width = 10,
+            align = "center",
+            conditionalPanel(
+                condition = z,
+                uiOutput(k)
+            )
+        )
+    )
 }
 
-# il faut separer les elements par des virgules
+
 
 # contenu de la section accueil
 baccueil <- fluidRow(
     box(
         title = "Présentation du TER", status = "primary", solidHeader = TRUE, width = 12,
-        collapsible = TRUE,
+        collapsible = TRUE, align="justify",
         "Nous sommes quatre étudiants en troisième année de licence MIASHS (Mathématiques et 
         Informatique Appliquées aux Sciences Humaines et Sociales) à l'Université de Rennes 1 et Rennes 2.",br(),br(),
         box(
@@ -59,7 +66,7 @@ baccueil <- fluidRow(
     ),
     box(
         title = "Qu'est-ce que Shiny", status = "warning", solidHeader = TRUE, width = 12,
-        collapsible = TRUE,
+        collapsible = TRUE, align="justify",
         "Shiny est un package R, développé par RStudio et qui permet de créer des applications web dynamiques et interactives. 
         Il est ainsi possible de réaliser les mêmes analyses et actions disponibles sous R. Sa principale force est qu'il devient 
         alors possible de représenter sur le web les données obtenues avec un programme R sans avoir a connaître les languages HTML, CSS et Javascript.", br(),
@@ -77,7 +84,7 @@ baccueil <- fluidRow(
     ),
     box(
         title = "Sujet appliqué à Shiny", status = "success", solidHeader = TRUE, width = 12,
-        collapsible = TRUE,
+        collapsible = TRUE, align="justify",
         "Cette application est l'application principale de notre projet TER. Cette application est axée sur le Théorème Centrale Limite (TCL). Il parait donc intéressant 
         de définir ce qu’est ce théorème et à quoi il sert. Le TCL permet  de savoir vers quelle loi normale tend un vecteur de moyennes en fonction de la loi que suivent ses \\(X_i\\) 
         Il sert notamment à trouver un intervalle de confiance (IC) ou encore à approximer une intégrale. En outre, la première démonstration du Théorème Central Limite, publiée en 1809, 
@@ -131,19 +138,24 @@ bsources <- fluidRow(
 )
 
 
-body_deftcl <- fluidRow(
-    box(title = "Définition du TCL",status="warning",solidHeader = T,width=6,
+body_def_tcl <- fluidRow(
+    box(
+        title = "Définition du TCL",status="warning",solidHeader = T,width=6, align="justify",
         "Le TCL (Théorème Central Limite) est le suivant :", br(),
         "Soit \\( (X_n)_{n \\in N}\\) une suite de variables aléatoires indépendantes de même loi, et telles que 
             \\( \\mathbb{E} \\left(X_{i}^{2} \\right) < +\\infty \\).",br(), 
         "On note \\( \\mathbb{E}(X_i) = \\mu, \\mathbb{V}(X_i) = \\sigma^2 \\) et \\( \\bar{X_n} = \\frac{1}{n} \\sum_{i=1}^{n} X_i \\).", br(), 
         "On a alors , quand \\( n \\rightarrow \\infty \\) : 
             $$ \\sqrt{n} \\cdot \\frac{\\bar{X_n} - \\mu} \\sigma \\stackrel{\\mathcal{L}}{\\rightarrow} \\mathcal{N}(0,1) $$"
-    ),
+        ),
     
-    box(title ="Eléments de preuve",status="info",solidHeader = T,width=6, "contre exemple"),
+    box(
+        title ="Eléments de preuve",status="info",solidHeader = T,width=6, 
+        "contre exemple"
+        ),
     
-    box(title ="Eléments de preuve",status="danger",solidHeader = T,width=12,
+    box(
+        title ="Eléments de preuve",status="danger",solidHeader = T,width=12, align="justify",
         "- On note \\( \\varphi \\) la fonction caractéristique des variables aléatoires \\( {X_n} - \\mu \\) et 
             $$Y_{n}=\\sqrt{n} \\cdot \\frac{\\bar{X_n}-\\mu}{\\sigma}$$
             - On obtient des propriétés de la fonction caractéristique :
@@ -160,7 +172,7 @@ body_deftcl <- fluidRow(
             $$ t\\mapsto \\exp \\left(-\\frac{t^{2}}{2} \\right) \\quad \\textrm{est la fonction caracteristique de la loi} \\quad \\mathcal{N}(0,1) $$ 
             - Dapres le theoreme de Paul Levy, on conclut :
             $$ Y_{n} \\stackrel{\\mathcal{L}}{\\rightarrow} \\mathcal{N}(0,1) $$"
-    )
+        )
 )
 
 # contenu de la section application aux lois
@@ -168,75 +180,134 @@ body_application_loi<-fluidRow(
     box(
         title = "Application aux lois",status="warning",solidHeader = T,width=12,
         fluidPage(
-            Applicationloi("checkbox1","La loi de Bernoulli","input.checkbox1 == true","Exemple1"),
-            Applicationloi("checkbox2","loi Exponentielle","input.checkbox2 == true","Exemple2"),
-            Applicationloi("checkbox3","La loi Poisson","input.checkbox3 == true","Exemple3"),
-            Applicationloi("checkbox4","La loi Uniforme continue","input.checkbox4 == true","Exemple4"),
-            Applicationloi("checkbox5","La loi Gamma","input.checkbox5 == true","Exemple5"),
-            Applicationloi("checkbox6","La loi du Khi-deux","input.checkbox6 == true","Exemple6"),
-            Applicationloi("checkbox7","La loi Student","input.checkbox7 == true","Exemple7"),
-            Applicationloi("checkbox8","La loi Fisher","input.checkbox8 == true","Exemple8")
-        )
-    ),
-    box(title = "Preuve empirique avec la loi exponentielle",width = 12,status = "info",solidHeader = T,
-        box(plotOutput("preuve"),solidHeader = T
+            Applicationloi("checkbox1","La loi de Bernoulli","input.checkbox1 == true","ex_bernoulli"),
+            Applicationloi("checkbox2","loi Exponentielle","input.checkbox2 == true","ex_exp"),
+            Applicationloi("checkbox3","La loi Poisson","input.checkbox3 == true","ex_poisson"),
+            Applicationloi("checkbox4","La loi Uniforme continue","input.checkbox4 == true","ex_unif"),
+            Applicationloi("checkbox5","La loi Gamma","input.checkbox5 == true","ex_gamma"),
+            Applicationloi("checkbox6","La loi du Khi-deux","input.checkbox6 == true","ex_khid"),
+            Applicationloi("checkbox7","La loi Student","input.checkbox7 == true","ex_student"),
+            Applicationloi("checkbox8","La loi Fisher","input.checkbox8 == true","ex_fisher")
+            )
         ),
-        box(title="Contrôle :", solidHeader = T,
+    box(
+        title = "Preuve empirique avec la loi exponentielle",width = 12,status = "info",solidHeader = T,
+        box(
+            plotOutput("preuve"),solidHeader = T
+            ),
+        box(
+            title="Contrôle :", solidHeader = T,
             sliderInput(inputId = "lambda",label = "Valeur de \\( \\lambda \\) ",min=0.1,max=20, value = 0),
-            sliderInput(inputId = "n",label = "nombre d'obervations dans chaque échantillon ",min=100,max=100000, value = 1)
+            sliderInput(inputId = "n",label = "Nombre d'obervations dans chaque échantillon ",min=2,max=10000, value = 100)
+            ),
+        box(
+            title="Explication :",solidHeader = T, align="justify",
+            "Nous avons pris le parti de montrer graphiquement la preuve empirique du TCL à l'aide de la loi exponentielle.
+            Nous avons construit une matrice composée de différents échantillons aléatoires de la loi exponentielle puis nous avons créer
+            un vecteur composé des moyennes de chaque ligne de la matrice (donc de différents échantillons). 
+            L'intérêt ici est que vous pouvez faire varier \\(\\lambda \\) et le nombre d'observations \\( n\\) qu'il y a dans chaque échantillon. 
+            Vous remarquerez que le TCL marche que quand \\( n\\) est grand.",br(),
+            "En effet, il faut avoir un grand nombre d'échantillons pour que les moyennes suivent une loi normale. 
+            Si nous faisons la moyenne que d'une variable par exemple, alors celle-ci ne sera pas significative et vaudra la valeur de départ, 
+            qui elle ne suit pas une loi normale."
+            )
         ),
-        box(title="Explication :",solidHeader = T,
-            "Nous avons pris le parti de montrer graphiquement la preuve empirique à l'aide de la loi exponentielle.
-            Nous avons donc construit une matrice composée de différents échantillons aléatoire de la loi exponentielle puis nous avons créer
-            un vecteur composé des moyennes de chaque ligne de la matrice (donc de différents échantillons). Nous aons également choisi de laisser l'utilisteur choisir
-            le lambda et le nombre d'observations qu'il y a dans chaque échantillon (n). Comme cela, nous pouvons directement voir que la preuve empirique ne marche que quand n est grand.
-            En effet, il faut avoir un grand nombre d'échantillons pour que les moyennes suivent une loi normale. 
-            En effe, si nous faisosn la moyenne de seulement une variable par exemple, la moyenne ne sera pas significative et vaudra la valeur de départ qui elle ne suit pas une loi normale.
-            SUFFISANT ? "
-        )
+    tabBox(
+        title = "Qu'est-ce que la delta méthode ?",
+        id = "tabdelta", width=12,
+        tabPanel(
+            "Définition", 
+            "Texte def",br(),
+            "Expliquer à quoi elle sert en language français ? 
+            Parce que la définition c'est bien mais c'est cool si on explique avec des mots aussi non ? "
+            ),
+        tabPanel(
+            "Exercice", 
+            "Texte exo"
+            )
     ),
-    box(title = "Delta méthode",status="warning",solidHeader = T,width=12,
-        box(solidHeader = T,textInput(inputId = "idText", label = "Entrez une fonction appliquée à \\(\\bar{X}\\)", value = "")
-        ),
-        box(solidHeader = T,selectInput(inputId = "idSelect", label = "Les variables de \\(\\bar{X}\\) suivent une loi: ", selected = 1,
-                                        choices = c("1" = 1, "2" = 2, "3" = 3))
-        ),
-        # pour delta methode recupere dans "selected_var" ce que l'utilisateur a ecrit
-        mainPanel(
-            textOutput("selected_var"),
-            "Le TCL de Y est donc :",
-            conditionalPanel(condition = "input.idSelect==1", uiOutput(outputId = "selection"))
+    box(
+        title = "Application de la Delta méthode",status="warning",solidHeader = T,width=12,
+        fluidPage(
+            box(
+                solidHeader = T, width=6,
+                selectInput(
+                    inputId = "id1", label = "Choisissez une fonction à appliquer à \\( \\bar{X}\\) :", selected = 1, 
+                    choices = c("1/x" = 1, "x^2" = 2, "ln(x)" = 3)
+                ),
+                selectInput(
+                    inputId = "id2", label = "Les variables de \\(\\bar{X}\\) suivent une loi :", selected = 1, 
+                    choices = c("Loi binomiale" = 1, "Loi exponentielle" = 2)
+                )
+            ),
+            box(
+                solidHeader = T,width=6, align="center",
+                Deltamethode("input.id1 == 1 & input.id2==1 ","inv_bin"), 
+                Deltamethode("input.id1 == 1 & input.id2==2 ","inv_exp"), 
+                Deltamethode("input.id1 == 2 & input.id2==1 ","carre_bin"), 
+                Deltamethode("input.id1 == 2 & input.id2==2 ","carre_exp"), 
+                Deltamethode("input.id1 == 3 & input.id2==1 ","ln_bin"), 
+                Deltamethode("input.id1 == 3 & input.id2==2 ","ln_exp")
+                )
         )
     )
 )
 
 # contenu de la section Interval de Confiance
 body_application_IC <- fluidRow(
-    box(title = "Le lien entre le TCL et les Intervalles de Confiances",width = 12,status = "info",solidHeader = T),
-    box(title = "Pour les intervalles de confiance",width = 12,status = "warning",solidHeader = T),
-    box(title = "Représentation graphique de l'évolution du TCL",width = 12,status = "info",solidHeader = T,
-        box(plotOutput("IC"),solidHeader = T
+    box(
+        title = "Le lien entre le TCL et les Intervalles de Confiances", width = 12,status = "info",solidHeader = T
         ),
-        box(title="Contrôle :", solidHeader = T,
-            sliderInput(inputId = "risque",label ="Le rique : 1-\\( \\alpha \\) ",min=0.1,max=0.99, value = 0),
-            sliderInput(inputId = "nb",label = "nombre d'obervations",min=1,max=1000, value = 1)
+    box(
+        title = "Pour les intervalles de confiance",width = 12,status = "warning",solidHeader = T
+        ),
+    box(
+        title = "Représentation graphique de l'évolution du TCL",width = 12,status = "info",solidHeader = T,
+        box(
+            plotOutput("IC"),solidHeader = T
+            ),
+        box(
+            title="Contrôle :", solidHeader = T,
+            sliderInput(
+                inputId = "risque",label ="Le rique : 1-\\( \\alpha \\) ",min=0.1,max=0.99, value = 0.95
+                ),
+            sliderInput(
+                inputId = "nb",label = "Nombre d'obervations",min=1,max=1000, value = 100
+                )
+            )
         )
-))
+)
 
 
 
 
 
 ui <- dashboardPage(skin = "red",
-                    dashboardHeader(title="Application Shiny"),
+                    dashboardHeader(
+                        title="Théorème Central Limite",
+                        titleWidth = 300
+                        ),
                     # contenu de la barre de navigation
                     dashboardSidebar( 
                         sidebarMenu(
-                            menuItem("Accueil", tabName = "accueil", icon = icon("chess")),
-                            menuItem("Définition du TCL", tabName = "Definition_TCL", icon = icon("arrow-right")),
-                            menuItem("Application aux lois", tabName = "Application_lois", icon = icon("arrow-right")),
-                            menuItem("Intervalle de confiance", tabName = "Interval_confiance", icon = icon("arrow-right")),
-                            menuItem("Sources", tabName = "sources", icon = icon("file"))
+                            menuItem(
+                                "Accueil", tabName = "accueil", icon = icon("chess")
+                                ),
+                            menuItem(
+                                "Définition du TCL", tabName = "def_tcl", icon = icon("arrow-right")
+                                ),
+                            menuItem(
+                                "Application aux lois", tabName = "applications_lois", icon = icon("arrow-right")
+                                ),
+                            menuItem(
+                                "Intervalle de confiance", tabName = "interval_confiance", icon = icon("arrow-right")
+                                ),
+                            menuItem(
+                                "Sources", tabName = "sources", icon = icon("file")
+                                ),
+                            menuItem(
+                                "Application lois usuelles", icon = icon("file-code"),href="https://ter-shiny-miashs.shinyapps.io/app2/"
+                            )
                         )
                     ),
                     # contenu de la page
@@ -244,23 +315,23 @@ ui <- dashboardPage(skin = "red",
                                   tabItems(
                                       # page accueil
                                       tabItem(tabName = "accueil",baccueil
-                                      ),
+                                              ),
                                       
                                       # page tcl
-                                      tabItem(tabName = "Definition_TCL",body_deftcl
-                                      ),
+                                      tabItem(tabName = "def_tcl",body_def_tcl
+                                              ),
                                       
                                       # page Application aux lois
-                                      tabItem(tabName = "Application_lois",body_application_loi
-                                      ),
+                                      tabItem(tabName = "applications_lois",body_application_loi
+                                              ),
                                       
                                       #page Application du TCL
-                                      tabItem(tabName = "Interval_confiance",body_application_IC
-                                      ),
+                                      tabItem(tabName = "interval_confiance",body_application_IC
+                                              ),
                                       
                                       # page sources
                                       tabItem(tabName = "sources",bsources
-                                      )
+                                              )
                                   )
                     )
 )
