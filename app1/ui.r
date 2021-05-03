@@ -164,11 +164,6 @@ body_def_tcl <- fluidRow(
     ),
     
     box(
-        title ="Eléments de preuve",status="info",solidHeader = T,width=6, 
-        "contre exemple"
-    ),
-    
-    box(
         title ="Eléments de preuve",status="danger",solidHeader = T,width=12, align="justify",
         "- On note \\( \\varphi \\) la fonction caractéristique des variables aléatoires \\( {X_n} - \\mu \\) et 
             $$Y_{n}=\\sqrt{n} \\cdot \\frac{\\bar{X_n}-\\mu}{\\sigma}$$
@@ -247,7 +242,7 @@ body_application_loi<-fluidRow(
                  "- Comme \\(\\lambda\\) ~ \\(\\mathcal{N}(0,\\frac{1}{\\lambda^{2}})\\) : on en déduit :", br(),
                  "\\(E(-\\lambda^{2}Y)= -\\lambda^{2} E(Y) = 0 \\)", br(),
                  "\\(V(-\\lambda^{2}Y)= \\lambda^4 V(Y) = \\lambda^{2} \\)", br(),
-                 "$$ (\\sqrt{n}\\ \\cdot (\\frac{1}{\\bar{X_n}}-\\lambda) \\stackrel
+                 "$$ \\sqrt{n}\\ \\cdot (\\frac{1}{\\bar{X_n}}-\\lambda) \\stackrel
                  {\\mathcal{L}}{\\rightarrow} \\mathcal{N}(0,\\lambda^{2})\\ $$"
                  
                  )
@@ -299,7 +294,23 @@ body_application_IC <- fluidRow(
         Nous voyons bien que le TCL est l'élément principal qui permet de commencer la construction de l'intervalle de confiance.",br(),
         "Dans un second temps, les \\(X_i\\) suivant une loi de Bernoulli dans notre exemple, alors nous pouvons utiliser l'approximation donnée par le TCL.
         Nous cherchons donc le quantile d'ordre \\( 1-\\alpha/2 \\) de la loi normale centrée réduite.",br(), br(),
-        "p44 construction + conclusion : binome + slutsky p par pchapeau dans variance"
+        
+        "Si nous regardons un exemple de construction d'un Intervalle de confiance asymptotique pour une proportion p",br(),
+        "Soit \\({X_1}...{X_n}\\) i.i.d de loi \\(\\mathcal{B}(p)\\)",br(),br(),
+
+        "Contruction de l'IC",br(),
+        "On sait que l'estimateur est \\(\\hat{p}_{n}=\\bar{X}_{n}\\) et donc grâce au TCL on peut dire que :",
+        "$$ \\sqrt{n}\\ \\cdot \\frac{\\hat{p}_{n} -p}{\\sqrt{p(1-p)}} \\stackrel{\\mathcal{L}}{\\rightarrow} \\mathcal{N}(0,1) $$",
+        
+    
+        "On trouve facilement la loi asymtotique de l'estimateur:",br(),
+        "$$\\sqrt{n}\\ \\cdot (\\hat{p}_{n}-{p}) \\stackrel{\\mathcal{L}}{\\rightarrow} \\mathcal{N}(0,p(1-p))$$",br(),
+        "On en déduit",
+        "$$\\mathcal{P}\\ (\\hat{p}_{n}-{q}_{1-\\frac{\\alpha}{2}}{\\sqrt{\\frac{p(1-p)}{n}}} \\leq \\mu \\leq
+        \\hat{p}_{n}+{q}_{1-\\frac{\\alpha}{2}}{\\sqrt{\\frac{p(1-p)}{n}}}) \\stackrel{\\mathcal{}}{\\rightarrow} 1-\\alpha $$",
+        "Grâce à Slutsky (que nous ne détaillerons pas), nous pouvons conclure qu'un intervalle de confiance asymtotique de niveau 1-\\(\\alpha\\) est donné par :",
+        "$$[\\hat{p}_{n}-{q}_{1-\\frac{\\alpha}{2}}{\\sqrt{\\frac{\\hat{p}_{n}(1-\\hat{p}_{n})}{n}}},\\hat{p}_{n}+{q}_{1-\\frac{\\alpha}{2}{\\sqrt{\\frac{\\hat{p}_{n}(1-p)}{n}}})]$$",
+        "n = 500 observation issues d'une loi \\(\\mathcal{B}(p)\\)"
     ),
     box(
         title = "Représentation graphique de l'évolution du TCL",width = 12,status = "info",solidHeader = T,
