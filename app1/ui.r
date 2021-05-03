@@ -146,7 +146,9 @@ bsources <- fluidRow(
         a("ici",href="https://rstudio.github.io/shinydashboard/structure.html",target="_blank"), br(),
         "RStudio documentation pour MathJax :", a("ici",href="https://shiny.rstudio.com/gallery/mathjax.html",target="_blank"),br(),
         "Moodle documentation pour notation Tex : ", a("ici",href="https://docs.moodle.org/3x/fr/Utilisation_de_la_notation_TeX",target="_blank"),br(),
-        "DataStorm documentation pour rAmCharts :",a("ici",href="https://datastorm-open.github.io/introduction_ramcharts/index.html",target="_blank")
+        "DataStorm documentation pour rAmCharts :",a("ici",href="https://datastorm-open.github.io/introduction_ramcharts/index.html",target="_blank"), br(),
+        "Cours de statistique Laurent Rouvière", br(),
+        "Document Modélisation Statistique pour les Intervalles de Confiance :", a("ici", href="http://www.lpsm.paris/pageperso/guyader/files/teaching/M1/Chapitre1.pdf", target="_blank")
     )
 )
 
