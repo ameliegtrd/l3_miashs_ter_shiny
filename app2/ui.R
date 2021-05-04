@@ -33,7 +33,7 @@ baccueil <- fluidRow(
             "GUINARD Florian"
         ),
         "Cette application fait partie du projet de travail de recherche encadré par Laurent Rouvière.
-        Il consiste au développement d'une application web avec RShiny afin de présenter un thème statistique."
+        Il s'agit du développement d'une application web avec RShiny afin de présenter un thème statistique."
     ),
     box(
         title = "Qu'est-ce que Shiny", status = "warning", solidHeader = TRUE, width = 12,align="justify",
@@ -43,15 +43,15 @@ baccueil <- fluidRow(
         alors possible de représenter sur le web les données obtenues avec un programme R sans avoir a connaître les languages HTML, CSS et Javascript.", br(),
         "Une application Shiny a besoin d'une partie 'UI' et d'une partie 'Server' pour fonctionner. La partie UI regroupe les éléments de 
         mise en forme et d'affichage de l'interface utilisateur. Elle affiche donc des entrées, appellées 'inputs' et des sorties, appelées 'outputs'. 
-        La partie Server execute les codes R qui servent à produire les outputs. C'est cette même partie qui met à jour les valeurs d'inputs 
+        La partie Server exécute les codes R qui servent à produire les outputs. C'est cette même partie qui met à jour les valeurs d'inputs 
         en cas de changement de celle-ci. C'est pour cela que les résultats qui sont fournis sont réactifs.",br(), br(),
         box(background="yellow", width = 12, solidHeader = TRUE,
             textInput("ex_input", label = h4("Par exemple"), value = "Ecrivez quelque chose ..."),
             h4("Vous avez écrit :  ") ,textOutput("ex_input")
         ),
-        "Vous avez saisi une entrée (input) qui a été envoyé au serveur. Le serveur a produit la sortie (output) et l'a renvoyé à l'UI qui l'a affiché.",br(),
-        "Plus généralement, l'UI prend en entrée des inputs et des valeurs qui sont envoyées au serveur. Celui-ci les créer, les mets à jour,
-        les calculs si nécessaire et les renvoie à l'UI. L'UI peut donc afficher les outputs et les objets."
+        "Vous avez saisi une entrée (input) qui a été envoyée au serveur. Le serveur a produit la sortie (output) et l'a renvoyée à l'UI qui l'a affichée.",br(),
+        "Plus généralement, l'UI prend en entrée des inputs et des valeurs qui sont envoyées au serveur. Celui-ci les crée, les met à jour,
+        les calcule si nécessaire et les renvoie à l'UI. L'UI peut donc afficher les outputs et les objets."
     ),
     box(
         title = "Sujet appliqué à Shiny", status = "success", solidHeader = TRUE, width = 12, align="justify",
@@ -73,7 +73,7 @@ baccueil <- fluidRow(
             Dans ce cas, la loi de \\(X\\) est déterminée par l'ensemble des probabilités :
             $$ \\mathbb{P}(a < X < b), \\quad \\forall \\, a<b $$"
         ),
-        "Ainsi, en statistique, on essaie de déterminier de manière plus ou moins précise la loi \\(F\\) de \\(X\\).
+        "Ainsi, en statistique, on essaie de déterminer de manière plus ou moins précise la loi \\(F\\) de \\(X\\).
         Pour y parvenir, on réalise un nombre de répétitions indépendantes de l'expérience conduisant à \\(X\\). 
         On génère ainsi un échantillon de valeurs issues de la loi de \\(F\\).",br(),
         "De cette façon, les lois de probabilité permettent d'illustrer des situations du quotidien.
@@ -83,19 +83,21 @@ baccueil <- fluidRow(
             "Prenons l'exemple des élections présidentielles en France. Suite au premier tour, deux candidats s'affrontent lors du second tour. 
             Un sondage auprès d'environ 1000 électeurs est réalisé. Ce sondage génère un échantillon du vote de 1000 électeurs, 
             sur une population de plusieurs millions.L'objectif est de prédire à partir de cet échantillon, quel candidat va remporter le plus de sufrages.
-            Pour ce faire, on détermine la loi que suivent les variables aléatoires. On pourrai approximer par la loi binomiale et se reporter grâce 
+            Pour ce faire, on détermine la loi que suivent les variables aléatoires. On pourrait approximer par la loi binomiale et se reporter grâce 
             au Théorème Central Limite à une loi gaussienne."
-            ),
-        "Cette application recense les différentes lois usuelles. Pour chacune d'entre elles, il est rensigné sa définition et ses moments d'ordre 1 et 2.
+        ),
+        "Cette application recense les différentes lois usuelles. Pour chacune d'entre elles, sont renseignés sa définition et ses moments d'ordre 1 et 2.
         Pour chaque loi, nous avons représenté un échantillon de variables aléatoires suivant la loi en question.",br(),
-        "Pour les lois discrètes (binomiale et poisson),",br(),
-        "Pour les lois continues (les autres), ",br(),
+        "Pour les lois discrètes (binomiale et poisson), vous pourrez voir la fonction de masse empirique et théorique ainsi que 
+        la fonction de répartition empirique et théorique. ",br(),
+        "Pour les lois continues (les autres), vous pourrez voir la fonction de densité empirique et théorique ainsi que
+        la fonction de répartition empirique et théorique.",br(),
         "Pour toutes ces lois, l'intérêt des représentations graphiques est le panneau 'Contrôle'.
         Il permet de faire varier la taille de l'échantillon et les paramètres de la loi en question.
-        L'objectif est d'observer le comportement de la loi en fonction de ses paramètres.",br(),
-        "Vous pourrez remarquer que plus la taille de l'échantillon est grande, plus vous gagner en précision et plus la densité 
+        L'objectif est d'observer le comportement de la loi en fonction des paramètres.",br(),
+        "Vous pourrez remarquer que plus la taille de l'échantillon est grande, plus vous gagnez en précision et plus la densité 
         ressemble à une densité gaussienne. Ce phénomène est expliqué dans la seconde application axée sur le Théorème Central Limite, 
-        que vous pouvez aller voir à partir du menu de naviguation."
+        que vous pouvez aller voir à partir du menu de navigation."
     )
 )
 
@@ -119,8 +121,12 @@ bsources <- fluidRow(
         a("ici",href="https://rstudio.github.io/shinydashboard/structure.html",target="_blank"), br(),
         "RStudio documentation pour MathJax :", a("ici",href="https://shiny.rstudio.com/gallery/mathjax.html",target="_blank"),br(),
         "Moodle documentation pour notation Tex : ", a("ici",href="https://docs.moodle.org/3x/fr/Utilisation_de_la_notation_TeX",target="_blank"),br(),
-        "Julien Barnier pour ggplot :",a("ici",href="https://juba.github.io/tidyverse/08-ggplot2.html",target="_blank")
-        
+        "Julien Barnier pour ggplot :",a("ici",href="https://juba.github.io/tidyverse/08-ggplot2.html",target="_blank"),br(),
+        "Benoît Cadre - cours de probabilités"
+    ),
+    box(
+        background = "black", width = 6,
+        img(src="code_more_shiny.jpg", title="Image",width= "100%")
     )
 )
 
@@ -148,31 +154,31 @@ bnorm <- fluidRow(
     box(title = "Représentation graphique de la densité",width = 12,status = "info",solidHeader = T,
         box(
             plotOutput("dnorm1"), solidHeader = TRUE,height = 400
-            ),
+        ),
         box(
-            title="Contrôle :", solidHeader = TRUE,height = 400,
+            plotOutput("dnorm2"), solidHeader = TRUE, height = 400
+        ),
+        box(
+            title="Contrôle :", solidHeader = TRUE,
             sliderInput(
                 inputId = "ech1", label = "Taille de l'échantillon",min = 2, max = 1000, value = 100
-                ),
+            ),
             sliderInput(
                 inputId = "bins",
                 label = "Nombre de classes",
                 min=1, max = 50,value = 30
-                ),
+            ),
             sliderInput(
                 inputId = "moyenne",
                 label = "Valeur de \\(\\mu\\)",
                 min=-20,max=20, value = 0
-                ),
+            ),
             sliderInput(
                 inputId = "ecart_type",
                 label = "Valeur de \\(\\sigma\\)",
                 min=1,max=50, value = 1
-                )
-        ),
-        box(
-            plotOutput("dnorm2"), solidHeader = TRUE
             )
+        )
     )
 )
 
@@ -193,30 +199,30 @@ bbin <- fluidRow(
         title = "Représentation graphique",width = 12,status = "info",solidHeader = T,
         box(
             plotOutput("dbinom1"),solidHeader = TRUE,height = 400
-            ),
+        ),
         box(
             plotOutput("dbinom2"),solidHeader = TRUE
-            ),
+        ),
         box(
             plotOutput("dbinom3"),solidHeader = TRUE
-            ),
+        ),
         box(
             title="Contrôle :",solidHeader = TRUE,
             sliderInput(
                 inputId = "ech2", 
                 label = "Taille de l'échantillon",
                 min = 2, max = 1000, value = 100
-                ),
+            ),
             sliderInput(
                 inputId = "nb_tirages",
                 label = "Nombre de tirages",
                 min=0,max=100, value = 10
-                ),
+            ),
             sliderInput(
                 inputId = "proba",
                 label = "Probabilité de succès",
                 min=0,max=1, value = 0.5, step = 0.01
-                )
+            )
         )
     )
 )
@@ -245,14 +251,17 @@ bexp <- fluidRow(
         title = "Représentation graphique de la densité",width = 12,status = "info",solidHeader = T,
         box(
             plotOutput("dexp1"),solidHeader = TRUE,height = 400
-            ),
+        ),
         box(
-            title="Contrôle :",solidHeader = TRUE,height = 400,
+            plotOutput("dexp2"),solidHeader = TRUE
+        ),
+        box(
+            title="Contrôle :",solidHeader = TRUE,
             sliderInput(
                 inputId = "ech3", 
                 label = "Taille de l'échantillon",
                 min = 2, max = 1000, value = 100
-                ),
+            ),
             sliderInput(
                 inputId = "bins2",
                 label = "Nombre de classes",
@@ -261,11 +270,8 @@ bexp <- fluidRow(
                 inputId = "lambda2",
                 label = "Valeur de \\(\\lambda\\)", 
                 min = 0.001, max = 20, value = 1,step = 0.001
-                )
-        ),
-        box(
-            plotOutput("dexp2"),solidHeader = TRUE
-            )    
+            )
+        )
     )
 )
 
@@ -281,23 +287,25 @@ bpoiss <- fluidRow(
         title = "Représentation graphique",width = 12,status = "info",solidHeader = T,
         box(
             plotOutput("dpois1"),solidHeader = TRUE, height = 400
-            ),
+        ),
         box(
             plotOutput("dpois2"),solidHeader = TRUE, height = 400
-            ),
+        ),
         box(
-            plotOutput("dpois3"),solidHeader = TRUE,height = 400
-            ),
+            plotOutput("dpois3"),solidHeader = TRUE,
+        ),
         box(
             title="Contrôle :",solidHeader = TRUE,
             sliderInput(
                 inputId = "ech4", 
                 label = "Taille de l'échantillon",
-                min = 2, max = 1000, value = 100),
+                min = 2, max = 1000, value = 100
+            ),
             sliderInput(
                 inputId = "lambda3",
                 label = "Valeur de \\(\\lambda\\)",
-                min=0.01,max=20, value = 1,step=0.01)
+                min=0.01,max=20, value = 1,step=0.01
+            )
         )
     )
 )
@@ -305,7 +313,7 @@ bpoiss <- fluidRow(
 # contenu de la section definition de la loi uniforme continue
 bunifc <- fluidRow(
     box(title = "Loi Uniforme Continue",status="danger",solidHeader = T,width=12,
-        "Soit \\(X\\) une variable aléatoire. Elle suit une loi uniforme sur le segment \\([a,b]\\),
+        "Soit \\(X\\) une variable aléatoire. Elle suit une loi uniforme sur l'intervalle \\([a,b]\\),
         \\(a < b\\), si sa densité est donnée par : 
         $$ f_X(x) = \\frac{1}{b-a} \\cdot \\mathbb{1}_{[a,b]}(x)$$
         On note \\(X\\) \\(\\sim\\) \\(\\mathcal{U} \\left([a,b] \\right)\\). Si \\(\\mathbb{P}(X \\in [a,b] = 1) \\), 
@@ -327,9 +335,12 @@ bunifc <- fluidRow(
     box(title = "Représentation graphique de la densité",width = 12,status = "info",solidHeader = T, 
         box(
             plotOutput("dunif1"),solidHeader = TRUE, height = 400
-            ),
+        ),
         box(
-            title="Contrôle :",solidHeader = TRUE, height = 400,
+            plotOutput("dunif2"),solidHeader = TRUE
+        ),
+        box(
+            title="Contrôle :",solidHeader = TRUE,
             sliderInput(
                 inputId = "ech5", 
                 label = "Taille de l'échantillon",
@@ -337,15 +348,14 @@ bunifc <- fluidRow(
             sliderInput(
                 inputId = "bins3",
                 label = "Nombre de classes",
-                min=1, max = 50,value = 30),
+                min=1, max = 50,value = 30
+            ),
             sliderInput(
                 inputId = "range", 
                 label = "Bornes de l'intervalle",
-                min = -200, max = 200,value = c(-20,20))
-        ), 
-        box(
-            plotOutput("dunif2"),solidHeader = TRUE
+                min = -200, max = 200,value = c(-20,20)
             )
+        )
     )   
 )
 
@@ -367,31 +377,32 @@ bgamma <- fluidRow(
     box(title = "Représentation graphique de la densité",width = 12,status = "info",solidHeader = T,
         box(
             plotOutput("dgamma1"),solidHeader = TRUE, height = 400
-            ),
-        box(title="Contrôle :",solidHeader = TRUE, height = 400,
+        ),
+        box(
+            plotOutput("dgamma2"),solidHeader = TRUE
+        ),
+        box(title="Contrôle :",solidHeader = TRUE,
             sliderInput(
                 inputId = "ech6", 
                 label = "Taille de l'échantillon",
-                min = 2, max = 1000, value = 100),
+                min = 2, max = 1000, value = 100
+            ),
             sliderInput(
                 inputId = "bins4",
                 label = "Nombre de classes",
                 min=1, max = 50,value = 30
-                ),
+            ),
             sliderInput(
                 inputId = "p",
                 label = "Valeur de \\(p\\)", 
                 min = 0.01, max = 15, value =1.5,step = 0.02
-                ),
+            ),
             sliderInput(
                 inputId = "teta",
                 label = "Valeur de \\(\\theta\\)", 
                 min = 0.01, max = 15, value = 1.5,step = 0.02
-                )
-        ),
-        box(
-            plotOutput("dgamma2"),solidHeader = TRUE
             )
+        )
     )
 )
 
@@ -411,27 +422,28 @@ bkhid <- fluidRow(
     box(title = "Représentation graphique de la densité",width = 12,status = "info",solidHeader = T,
         box(
             plotOutput("dchisq1"),solidHeader = TRUE, height = 400
-            ),
+        ),
         box(
-            title="Contrôle :",solidHeader = TRUE, height = 400,
+            plotOutput("dchisq2"),solidHeader = TRUE
+        ),
+        box(
+            title="Contrôle :",solidHeader = TRUE,
             sliderInput(
                 inputId = "ech7", 
                 label = "Taille de l'échantillon",
-                min = 2, max = 1000, value = 100),
+                min = 2, max = 1000, value = 100
+            ),
             sliderInput(
                 inputId = "bins5",
                 label = "Nombre de classes",
                 min=1, max = 50,value = 30
-                ),
+            ),
             sliderInput(
                 inputId = "ddl",
                 label = "Degré de liberté",
                 min=1,max=200, value = 10
-                )
-        ),
-        box(
-            plotOutput("dchisq2"),solidHeader = TRUE
             )
+        )
     )
 )
 
@@ -450,27 +462,28 @@ bstudent <- fluidRow(
     box(title = "Représentation graphique de la densité",width = 12,status = "info",solidHeader = T,
         box(
             plotOutput("dt1"),solidHeader = TRUE, height = 400
-            ),
+        ),
         box(
-            title="Contrôle :",solidHeader = TRUE, height = 400,
+            plotOutput("dt2"),solidHeader = TRUE
+        ),
+        box(
+            title="Contrôle :",solidHeader = TRUE,
             sliderInput(
                 inputId = "ech8", 
                 label = "Taille de l'échantillon",
                 min = 2, max = 1000, value = 100
-                ),
+            ),
             sliderInput(
                 inputId = "bins6",
                 label = "Nombre de classes",
                 min=1, max = 50,value = 30
-                ),
+            ),
             sliderInput(
                 inputId = "ddl2",
                 label = "Degré de liberté",
-                min=1,max=200, value = 10)
-        ),
-        box(
-            plotOutput("dt2"),solidHeader = TRUE
+                min=1,max=200, value = 10
             )
+        )
     )
 )
 
@@ -492,32 +505,35 @@ bfisher <- fluidRow(
     box(title = "Représentation graphique de la densité",width = 12,status = "info",solidHeader = T,
         box(
             plotOutput("df1"),solidHeader = TRUE, height = 400
-            ),
-        box(
-            title="Contrôle :",solidHeader = TRUE, height = 400,
-            sliderInput(
-                inputId = "ech9", label = "Taille de l'échantillon",min = 2, max = 1000, value = 100
-                ),
-            sliderInput(
-                inputId = "bins7",
-                label = "Nombre de classes",
-                min=1, max = 50,value = 30),
-            sliderInput(
-                inputId = "ddl3",label = "Degré de liberté \\(m\\)",min=1,max=200, value = 10
-                ),
-            sliderInput(
-                inputId = "ddl4",label = "Degré de liberté \\(n\\)",min=1,max=200, value = 10
-                )
         ),
         box(
             plotOutput("df2"),solidHeader = TRUE
+        ),
+        box(
+            title="Contrôle :",solidHeader = TRUE,
+            sliderInput(
+                inputId = "ech9", label = "Taille de l'échantillon",min = 2, max = 1000, value = 100
+            ),
+            sliderInput(
+                inputId = "bins7",
+                label = "Nombre de classes",
+                min=1, max = 50,value = 30
+            ),
+            sliderInput(
+                inputId = "ddl3",label = "Degré de liberté \\(m\\)",min=1,max=200, value = 10
+            ),
+            sliderInput(
+                inputId = "ddl4",label = "Degré de liberté \\(n\\)",min=1,max=200, value = 10
             )
+        )
     )
 )
 
 
 ui <- dashboardPage(skin = "red",
-                    dashboardHeader(title="Lois Usuelles"),
+                    dashboardHeader(
+                        title="Lois Usuelles"
+                        ),
                     # contenu de la barre de navigation
                     dashboardSidebar( 
                         sidebarMenu(
