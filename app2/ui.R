@@ -92,6 +92,7 @@ baccueil <- fluidRow(
         la fonction de répartition empirique et théorique. ",br(),
         "Pour les lois continues (les autres), vous pourrez voir la fonction de densité empirique et théorique ainsi que
         la fonction de répartition empirique et théorique.",br(),
+        "Sur ces graphiques, sont en rouge les représentations théoriques et en bleu les représentations empiriques.",br(),
         "Pour toutes ces lois, l'intérêt des représentations graphiques est le panneau 'Contrôle'.
         Il permet de faire varier la taille de l'échantillon et les paramètres de la loi en question.
         L'objectif est d'observer le comportement de la loi en fonction des paramètres.",br(),
