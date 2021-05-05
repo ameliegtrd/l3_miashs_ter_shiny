@@ -94,27 +94,26 @@ baccueil <- fluidRow(
         car les valeures élevées étireraient la fonction de densité vers la droite. Or, si on représente la densité des moyennes des salaires de chaque entreprise,
         alors la courbe devrait ressembler à une courbe gaussienne.",
         br() , br(),
-        box(
-            status="success",solidHeader = TRUE,width=6,
-            "Dans la première section de l'application 'Définition du TCL' vous trouverez la définition du TCL et une preuve.", br(),
-            "Dans la seconde section 'Application aux lois', la première box présente le TCL appliqué à chaque loi usuelle proposée. Il vous suffira de cocher la loi que vous voulez regarder pour voir son TCL. 
-            Dans la seconde box, nous avons représenté la preuve empirique avec un histogramme pour la loi exponentielle. Vous pourrez faire varier la valeur du paramètre \\(\\lambda\\) et le nombre d'observations dans
-            chaque échantillon. Vous remarquerez que plus le nombre d'observations est grand, plus la densité s'approche de celle d'une loi normale. 
-            Dans la dernière box de cette section, nous appliquons la delta méthode à un nombre restreint de fonctions. Vous pourrez choisir parmi 3 fonctions et choisir quelle loi suivent les \\(X_i\\).
-            Nous vous laissons le choix entre les lois : loi Binomiale et loi exponentielle. En effet, la delta méthode permet d'étendre le TCL. 
-            En outre, elle permet de savoir vers quelle loi normale tend une fonction appliquée à \\(\\bar{X_n}\\)."
-        ),
-        box(
-            status="success",solidHeader = TRUE,width=6,
-            "Le TCL sert aussi à trouver un intervalle de confiance (IC). 
-            En effet, il permet quelque soit les lois de se ramener à des règles gaussiennes et de trouver des intervalles de confiance asymptotiques de façon plus simple.
-            Dans le quotidien, les intervalles de confiance sont très utiles et servent par exemple à mesurer l’incertitude dans des enquêtes ou des études de marché à partir d’échantillons.", br(),
-            "Ainsi, la troisième section de cette application est portée sur le lien entre le TCL et les IC. 
-            Vous trouverez dans la première box la définition d'un intervalle de confiance. 
-            Dans la seconde nous expliquons le lien entre le TCL et l'intervalle de confiance asymptotique. Nous vous montrons également la démarche pour trouver l'intervalle de confiance
-            asymptotique d'une loi de Bernoulli à l'aide du TCL.
-            Enfin, dans la dernière box nous avons représenté graphiquementl'évolution des bornes de l'intervalle de confiance asymptotique pour la loi de Bernouilli."
-        )
+        "Dans la première section de l'application 'Définition du TCL' vous trouverez la définition du TCL et une preuve.", br(),
+        "Dans la seconde section 'Application aux lois', la première box présente le TCL appliqué à chaque loi usuelle proposée. 
+        Il vous suffira de cocher la loi que vous voulez regarder pour voir son TCL. 
+        Dans la seconde box, nous avons représenté la preuve empirique avec un histogramme pour la loi exponentielle. 
+        Vous pourrez faire varier la valeur du paramètre \\(\\lambda\\) et le nombre d'observations dans chaque échantillon. 
+        Vous remarquerez que plus le nombre d'observations est grand, plus la densité s'approche de celle d'une loi normale. 
+        Dans la dernière box de cette section, nous appliquons la delta méthode à un nombre restreint de fonctions. 
+        Vous pourrez choisir parmi 3 fonctions et choisir quelle loi suivent les \\(X_i\\).
+        Nous vous laissons le choix entre les lois : loi Binomiale et loi exponentielle. En effet, la delta méthode permet d'étendre le TCL. 
+        En outre, elle permet de savoir vers quelle loi normale tend une fonction appliquée à \\(\\bar{X_n}\\).",br(),
+        "Le TCL sert aussi à trouver un intervalle de confiance (IC). 
+        En effet, il permet quelque soit les lois de se ramener à des règles gaussiennes et de trouver des intervalles de confiance asymptotiques de façon plus simple.
+        Dans le quotidien, les intervalles de confiance sont très utiles et servent par exemple à mesurer l’incertitude dans des enquêtes 
+        ou des études de marché à partir d’échantillons.", br(),
+        "Ainsi, la troisième section de cette application est portée sur le lien entre le TCL et les IC. 
+        Vous trouverez dans la première box la définition d'un intervalle de confiance. 
+        Dans la seconde nous expliquons le lien entre le TCL et l'intervalle de confiance asymptotique. 
+        Nous vous montrons également la démarche pour trouver l'intervalle de confiance
+        asymptotique d'une loi de Bernoulli à l'aide du TCL.
+        Enfin, dans la dernière box nous avons représenté graphiquementl'évolution des bornes de l'intervalle de confiance asymptotique pour la loi de Bernouilli."
     ),
     box(
         title = "Difficultés rencontrées", status = "danger", solidHeader = TRUE, width = 12,
@@ -222,7 +221,9 @@ body_application_loi<-fluidRow(
             title="Explication :",solidHeader = T, align="justify",
             "Nous avons pris le parti de montrer graphiquement la preuve empirique du TCL à l'aide de la loi exponentielle.
             Nous avons construit une matrice composée de différents échantillons aléatoires de la loi exponentielle puis nous avons créé
-            un vecteur composé des moyennes de chaque ligne de la matrice (donc de différents échantillons). 
+            un vecteur composé des moyennes de chaque ligne de la matrice (donc de différents échantillons).
+            Au final, l'histogramme représenté est celui de ce vecteur.
+            En rouge, est représenté la densité d'une loi normale centrée réduite afin de pouvoir observer le TCL. 
             L'intérêt ici est que vous pouvez faire varier \\(\\lambda \\) et le nombre d'observations \\( n\\) qu'il y a dans chaque échantillon. 
             Vous remarquerez que le TCL ne marche que quand \\( n\\) est grand.",br(),
             "En effet, il faut avoir un grand nombre d'échantillons pour que les moyennes suivent une loi normale. 
@@ -333,10 +334,10 @@ body_application_IC <- fluidRow(
         box(
             title="Contrôle :", solidHeader = T,
             sliderInput(
-                inputId = "risque",label ="Le rique : \\(\\alpha \\) ",min=0.05,max=0.99, value = 0.95
+                inputId = "risque",label ="Le rique : \\(\\alpha \\) ",min=0.05,max=0.99, value = 0.05
             ),
             sliderInput(
-                inputId = "nb",label = "Nombre d'obervations",min=1,max=1000, value = 100
+                inputId = "nb",label = "Nombre d'obervations",min=1,max=1000, value = 1
             ),
             box(
                 title="Explication :",solidHeader = T, align="justify",width = 12,

@@ -122,7 +122,8 @@ shinyServer(function(input, output, session) {
     grille.x <- seq(min(ech), 1.2*max(ech), length.out = input$n)
     y<-dnorm(grille.x,0,1)
     lines(grille.x, y, col="red",  lwd=2)
-    legend("topright",legend=c("densité empirique","densité théorique"),col=c("lightblue","red"),title="Légende :",lty=1, lwd=2)
+    legend("topright",legend=c("densité empirique","loi centrée réduite"),
+           col=c("lightblue","red"),title="Légende :",lty=1, lwd=2)
   })
   
   # box qu'est-ce que la delta methode
@@ -187,18 +188,18 @@ shinyServer(function(input, output, session) {
   
   # intervalle de confiance
   output$IC <- renderPlot({
-    q1<- qbinom(input$risque/2,input$nb, 0.5)
+    q1<- qnorm(1-(input$risque/2))
     x<-(0.5*(1-0.5))/input$nb
     # 
     deb<-0.5-(q1*sqrt(x))
     fin<- 0.5+(q1*sqrt(x))
     # on plot 1/2 sans afficher les axes
-    plot(1/2,0,xlim=c(deb-3,fin+3),pch="|",cex=2,axes=F,xlab="",ylab="",font.lab=2)
+    plot(1/2,0,xlim=c(deb-0.5,fin+0.5),pch="|",cex=2,axes=F,xlab="",ylab="",font.lab=2)
     # borne inferieure
     points(deb,0,bg="blue",pch="[",col="red",cex=2)
     # borne superieure
     points(fin,0,bg="green",pch="]", col="red",cex=2)
     # on fait appraitre l'axe qu'on definit nous meme
-    axis(1,c(deb-3,deb,1/2,fin,fin+3),pos=0)
+    axis(1,c(deb-0.5,deb,1/2,fin,fin+0.5),pos=0)
     })
 })
