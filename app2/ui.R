@@ -205,9 +205,6 @@ bbin <- fluidRow(
             plotOutput("dbinom2"),solidHeader = TRUE
         ),
         box(
-            plotOutput("dbinom3"),solidHeader = TRUE
-        ),
-        box(
             title="Contrôle :",solidHeader = TRUE,
             sliderInput(
                 inputId = "ech2", 
@@ -291,9 +288,6 @@ bpoiss <- fluidRow(
         ),
         box(
             plotOutput("dpois2"),solidHeader = TRUE, height = 400
-        ),
-        box(
-            plotOutput("dpois3"),solidHeader = TRUE,
         ),
         box(
             title="Contrôle :",solidHeader = TRUE,
