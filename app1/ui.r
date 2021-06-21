@@ -4,6 +4,7 @@
 # library
 library(shiny)
 library(shinydashboard)
+library("DescTools")
 
 
 # fonctions
@@ -113,7 +114,7 @@ baccueil <- fluidRow(
         Dans la seconde nous expliquons le lien entre le TCL et l'intervalle de confiance asymptotique. 
         Nous vous montrons également la démarche pour trouver l'intervalle de confiance
         asymptotique d'une loi de Bernoulli à l'aide du TCL.
-        Enfin, dans la dernière box nous avons représenté graphiquementl'évolution des bornes de l'intervalle de confiance asymptotique pour la loi de Bernouilli."
+        Enfin, dans la dernière box nous avons représenté graphiquement l'évolution des bornes de l'intervalle de confiance asymptotique pour la loi de Bernouilli."
     ),
     box(
         title = "Difficultés rencontrées", status = "danger", solidHeader = TRUE, width = 12,
@@ -123,10 +124,10 @@ baccueil <- fluidRow(
         Dans un second temps, il a fallu réfléchir à une façon de rendre notre application intéractive. 
         La première section n'est que théorique et pas intéractive mais indispensable pour la suite. ",br() , br(),
         "Ensuite, nous avons dû réfléchir à une façon d'illustrer le TCL car celui-ci n'est pas facile à illustrer.", br(),
-        "Nous avons donc choisi d'illustrer la preuve empirique de TCL avec une loi et avons laissé le contrôle à l'utilisateur sur la valeur du paramètre et sur la taille des échantillons. 
+        "Nous avons donc choisi d'illustrer la preuve empirique du TCL avec une loi et avons laissé le contrôle à l'utilisateur sur la valeur du paramètre et sur la taille des échantillons. 
         La partie sur la delta méthode nous a posé quelques problèmes car nous avions comme idée au départ de demander à l'utilisateur de rentrer une fonction et de choisir quelle loi suivent les  \\(X_i\\)
         parmi 2 lois proposées. Cependant, cela aurait nécéssité au préalable que l'utilisateur utilise la même notation que nous utilisons dans R pour déclarer une fonction. 
-        Nous avons finalement décidé de proposer 3 fonctions à l'utilisteur et de le laisser choisir parmi ces 3 fonctions."
+        Nous avons finalement décidé de proposer 3 fonctions à l'utilisateur et de le laisser choisir parmi ces 3 fonctions."
     )
 )
 
@@ -215,7 +216,7 @@ body_application_loi<-fluidRow(
         box(
             title="Contrôle :", solidHeader = T,
             sliderInput(inputId = "lambda",label = "Valeur de \\( \\lambda \\) ",min=0.1,max=20, value = 1),
-            sliderInput(inputId = "n",label = "Nombre d'obervations dans chaque échantillon ",min=2,max=2000, value = 100)
+            sliderInput(inputId = "n",label = "Nombre d'obervations dans chaque échantillon ",min=2,max=2000, value = 300)
             ),
         box(
             title="Explication :",solidHeader = T, align="justify",
@@ -337,14 +338,14 @@ body_application_IC <- fluidRow(
                 inputId = "risque",label ="Le rique : \\(\\alpha \\) ",min=0.05,max=0.99, value = 0.05
             ),
             sliderInput(
-                inputId = "nb",label = "Nombre d'obervations",min=1,max=1000, value = 1
+                inputId = "nb",label = "Nombre d'obervations",min=2,max=1000, value = 2
             ),
             box(
                 title="Explication :",solidHeader = T, align="justify",width = 12,
                 "Nous avons décider de représenter l'intervalle de confiance pour une proportion lorsque les \\(X_i\\) suivent une loi de Bernoulli de paramètre \\( p = \\frac{1}{2} \\).", br(),br(),
                 "Nous avons décrit ci-dessus la façon de trouver cet intervalle de confiance. Il paraissait donc intéressant de montrer comment ce dernier évolue en 
                 fonction du nombre d'observations et du risque \\(\\alpha \\).", br(),
-                "Nous remarquons donc que plus le risque est grand, plus l'intervalle est petit. En effet, plus le risque est grand, plus nous autorisons le risque que
+                "Nous remarquons donc que plus le risque est grand, plus l'intervalle est petit. En effet, plus le risque est grand, plus nous prenons le risque que
                 \\(\\mu \\) soit en dehors de l'intervalle.", br(),
                 "Le pénomène est le même lorsque le nombre d'échantillons est grand. "
             )

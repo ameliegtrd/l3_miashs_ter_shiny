@@ -6,6 +6,7 @@
 # library
 library(shiny)
 library(shinydashboard)
+library("DescTools")
 
 
 
@@ -113,11 +114,11 @@ shinyServer(function(input, output, session) {
   
   # preuve empirique TCL
   output$preuve <- renderPlot({
-    echantillon <-rexp(10*input$n, input$lambda)
-    matrice<- matrix(echantillon, nrow=input$n, ncol=10)
+    echantillon <-rexp(1000*input$n, input$lambda)
+    matrice<- matrix(echantillon, nrow=input$n, ncol=1000)
     vecteurmoy<- rowMeans(matrice)
     vecteur_de_moyenne<-(vecteurmoy-mean(vecteurmoy))/sd(vecteurmoy)
-    hist(vecteur_de_moyenne,breaks = 60, main = "Histogramme de la preuve empirique" ,col = "lightblue", border = "black",freq=FALSE)
+    hist(vecteur_de_moyenne,breaks = 20, main = "Histogramme de la preuve empirique" ,col = "lightblue", border = "black",freq=FALSE)
     ech<-rnorm(input$n,0,1)
     grille.x <- seq(min(ech), 1.2*max(ech), length.out = input$n)
     y<-dnorm(grille.x,0,1)
@@ -188,18 +189,22 @@ shinyServer(function(input, output, session) {
   
   # intervalle de confiance
   output$IC <- renderPlot({
-    q1<- qnorm(1-(input$risque/2))
-    x<-(0.5*(1-0.5))/input$nb
-    # 
-    deb<-0.5-(q1*sqrt(x))
-    fin<- 0.5+(q1*sqrt(x))
+    ech_int <- rbinom(n = input$nb,p = 0.5, size = 1)
+    deb <- round(MeanCI(ech_int, conf.level = 1- input$risque)[2],3)
+    fin <- round(MeanCI(ech_int, conf.level = 1- input$risque)[3],3)
+    # q1<- qnorm(1-(input$risque/2))
+    # pchap <- 0.5
+    # x<-(pchap*(1-pchap))/input$nb
+    # # 
+    # deb<-round(pchap-(q1*sqrt(x)),3)
+    # fin<- round(pchap+(q1*sqrt(x)),3)
     # on plot 1/2 sans afficher les axes
     plot(1/2,0,xlim=c(deb-0.5,fin+0.5),pch="|",cex=2,axes=F,xlab="",ylab="",font.lab=2)
     # borne inferieure
     points(deb,0,bg="blue",pch="[",col="red",cex=2)
     # borne superieure
     points(fin,0,bg="green",pch="]", col="red",cex=2)
-    # on fait appraitre l'axe qu'on definit nous meme
-    axis(1,c(deb-0.5,deb,1/2,fin,fin+0.5),pos=0)
+    # on fait apparaitre l'axe qu'on definit nous meme
+    axis(side = 1,at = c(deb-1,deb,1/2,fin,fin+1),labels = c("",deb,1/2,fin,"") ,pos=0,xaxt="s")
     })
 })
